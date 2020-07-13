@@ -30,27 +30,27 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="">Inicio</a>
+                  <a class="nav-link" href="{{ url('/') }}">Inicio</a>
+                </li>
+ 
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/equipos') }}">Equipos</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Equipos</a>
+                    <a class="nav-link" href="{{ url('/partidos') }}">Partidos</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Partidos</a>
+                    <a class="nav-link" href="{{ url('/resultados') }}">Resultados</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Resultados</a>
+                    <a class="nav-link" href="{{ url('/estadisticas') }}">Estadisticas</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Estadisticas</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Posicioines</a>
+                    <a class="nav-link" href="{{ url('/posiciones') }}">Posicioines</a>
                 </li>
 
                 <li class="nav-item">

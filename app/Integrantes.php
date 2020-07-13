@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Equipo extends Model
+class Integrantes extends Model
 {
     use Notifiable;
 
     protected $fillable = [
-        'id','nombre','victorias','empates','derrotas','id_liga','id_rama','id_catedoria'
+        'id_integrantes','id_equipo','id_jugador'
     ];
 }
