@@ -13,7 +13,7 @@ class CreateEquipoTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipo', function (Blueprint $table) {
+        Schema::create('equipos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre', 255);
             $table->integer('victorias')->default('0');

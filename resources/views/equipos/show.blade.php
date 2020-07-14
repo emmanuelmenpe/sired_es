@@ -41,7 +41,7 @@
                 </thead>
                 <tbody>
                     @foreach ($jugadores as $jugador)
-                        @if ($integrantes->id_equipo == $equipo->id)
+                        {{--@if ($integrantes->id_equipo == $equipo->id)--}}
                         <tr>
                             <td>{{$jugador->nombre}}</td>
                             <td>{{$jugador->curp}}</td> 
@@ -50,7 +50,7 @@
                             <td>{{$jugador->fecha_sancion}}</td>
                             <td>{{$jugador->fecha_fin}}</td>
                         </tr>
-                        @endif
+                        {{--@endif--}}
                     @endforeach
                 </tbody>
               </table>

@@ -13,7 +13,7 @@ class CreatePartidoTable extends Migration
      */
     public function up()
     {
-        Schema::create('partido', function (Blueprint $table) {
+        Schema::create('partidos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('id_local')->references('id')->on('equipo');
             $table->foreignId('id_visitante')->references('id')->on('equipo');
