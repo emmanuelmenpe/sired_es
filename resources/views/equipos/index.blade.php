@@ -6,6 +6,13 @@
         <button type="button" class="btn btn-success float-right">Agregar equipo</button>
     </a>
 </h2>
+<h6>
+  @if ($search)
+    <div class="alert alert-primary" role="alert">
+      Los resultados para tu busqueda '{{$search}}' son: 
+    </div>
+  @endif
+</h6>
 <table class="table table-striped">
     <thead>
       <tr>
@@ -23,7 +30,7 @@
             <td>{{$equipo->id_liga}}</td>
             <td>{{$equipo->id_rama}}</td>
             <td>{{$equipo->id_categoria}}</td>
-            <td>
+            <td> 
                 <form action="" method="POST">
                     <a href="{{route('equipos.show', $equipo->id)}}">
                         <button type="button" class="btn btn-secondary btn-sm">ver</button>

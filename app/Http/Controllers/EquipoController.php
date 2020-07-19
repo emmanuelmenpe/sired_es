@@ -14,9 +14,18 @@ use Illuminate\Http\Request;
 class EquipoController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        return view('equipos.index', ['equipos'=>Equipo::all()]);
+        if($request){
+            $query = trim($request->get('search'));
+            $equipos = Equipo::where('nombre','LIKE','%' . $query . '%')
+            ->orderBy('id', 'asc')
+            ->get();
+
+            $equipo = Equipo::all();
+            return view('equipos.index', ['equipos'=>$equipos, 'search' => $query]);
+        }
+        //return view('equipos.index', ['equipos'=>Equipo::all()]);
         
     }
     
@@ -27,7 +36,16 @@ class EquipoController extends Controller
     
     public function store(Request $request)
     {
-        //
+        $equipo = new Equipo();
+
+        $equipo->nombre = request('nombre');
+        $equipo->id_liga = request('id_liga');
+        $equipo->id_rama = request('id_rama');
+        $equipo->id_categoria = request('id_categoria');
+
+        $equipo->save();
+
+        return redirect('/equipos');
     }
 
     public function show($id)
