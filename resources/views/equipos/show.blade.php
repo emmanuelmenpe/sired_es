@@ -4,7 +4,8 @@
   <div class="container">
       <div class="jumbotron jumbotron-fluid">
           <div class="container">
-              <h1 class="display-4">Datos de equipo: {{$equipo->nombre}}</h1>
+              <h1 class="display-4">Datos de equipo: {{$equipo->nombre}}
+              </h1>
               <table class="table">
                   <thead>
                     <tr>
@@ -27,7 +28,11 @@
                     </tr>
                   </tbody>
                 </table>
-                <h1>Integrantes</h1>
+                <h1>Integrantes
+                  <a href="jugadores/create">
+                    <button type="button" class="btn btn-success float-right">Agregar jugador</button>
+                  </a>
+                </h1>
                 <table class="table">
                   <thead>
                     <tr>
@@ -37,6 +42,7 @@
                       <th scope="col">Motivo</th>
                       <th scope="col">Fecha sancion</th>
                       <th scope="col">fecha fin</th>
+                      <th scope="col">Opciones</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -50,6 +56,16 @@
                               <td>{{$jugador->motivo}}</td>
                               <td>{{$jugador->fecha_sancion}}</td>
                               <td>{{$jugador->fecha_fin}}</td>
+                              <td> 
+                                <form action="" method="POST">
+                                    <a href="">
+                                        <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                                    </a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                            </td>
                           </tr>
                           {{--@endif--}}
                       @endforeach

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRamaTable extends Migration
+class CreateLigaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateRamaTable extends Migration
      */
     public function up()
     {
-        Schema::create('rama', function (Blueprint $table) {
+        Schema::create('ligas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('rama', 255);
+            $table->string('liga', 255);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateRamaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rama');
+        Schema::dropIfExists('liga');
     }
 }

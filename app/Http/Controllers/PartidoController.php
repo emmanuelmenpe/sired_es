@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Equipo;
+use App\Equipo; 
 use App\Partido;
 
 class PartidoController extends Controller
@@ -16,12 +16,24 @@ class PartidoController extends Controller
 
     public function create()
     {
-        return view('partidos.create');
+        $equipos = Equipo::all();
+        return view('partidos.create', ['equipos'=>$equipos]);
     }
     
     public function store(Request $request)
     {
-        //
+        $partido = new Partido();
+
+        $partido->cancha = request('cancha');
+        $partido->arbitro = request('arbitro');
+        $partido->cancha = request('cancha');
+        $partido->fecha = request('fecha');
+        $partido->hora = request('hora');
+        $partido->id_local = request('id_local');
+        $partido->id_visitante = request('id_visitante');
+
+        $partido->save();
+        return redirect('/partidos');
     }
     
     public function show($id)

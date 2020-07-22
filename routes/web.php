@@ -9,4 +9,5 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('equipos', 'EquipoController');
 Route::resource('jugadores', 'JugadorController');
-Route::resource('partidos', 'PartidoController');
+Route::resource('partidos', 'PartidoController');//->middleware('valPar');
+
