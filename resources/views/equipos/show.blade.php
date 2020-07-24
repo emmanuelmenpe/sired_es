@@ -29,7 +29,8 @@
                   </tbody>
                 </table>
                 <h1>Integrantes
-                  <a href="jugadores/create">
+                  <a href="/jugadores/create"> <!--{{--  --}}-->
+                    <!--{{-- <a href="{{route('equipos.redirect', $equipo->id)}}"> --}}-->
                     <button type="button" class="btn btn-success float-right">Agregar jugador</button>
                   </a>
                 </h1>
@@ -38,6 +39,7 @@
                     <tr>
                       <th scope="col">Nombre</th>
                       <th scope="col">CURP</th>
+                      <th scope="col">Fotografia</th>
                       <th scope="col">Sancionado</th>
                       <th scope="col">Motivo</th>
                       <th scope="col">Fecha sancion</th>
@@ -52,13 +54,14 @@
                           <tr>
                               <td>{{$jugador->nombre}}</td>
                               <td>{{$jugador->curp}}</td> 
+                              <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="sin_img" height="50px" width="50px"></td> 
                               <td>{{$jugador->sancion}}</td>
                               <td>{{$jugador->motivo}}</td>
                               <td>{{$jugador->fecha_sancion}}</td>
                               <td>{{$jugador->fecha_fin}}</td>
                               <td> 
-                                <form action="" method="POST">
-                                    <a href="">
+                                <form action="{{route('jugadores.destroy', $jugador->id)}}" method="POST">
+                                    <a href="{{route('jugadores.edit', $jugador->id)}}">
                                         <button type="button" class="btn btn-primary btn-sm">Editar</button>
                                     </a>
                                     @csrf

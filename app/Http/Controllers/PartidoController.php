@@ -39,20 +39,34 @@ class PartidoController extends Controller
     public function show($id)
     {
         //
-    }
+    } 
     
     public function edit($id)
     {
-        //
+        $partido = Partido::findOrFail($id);
+        return view('partidos.edit',['partido' => $partido]);
     }
     
     public function update(Request $request, $id)
     {
-        //
+        $partido = Partido::findOrFail($id);
+        
+        $partido->cancha = $request->get('cancha');
+        $partido->arbitro = $request->get('arbitro');
+        $partido->fecha = $request->get('fecha');
+        $partido->hora = $request->get('hora');
+
+        $partido->update();
+
+        return redirect('/partidos');
     }
     
     public function destroy($id)
     {
-        //
+        $partido = Partido::findOrFail($id);
+
+        $partido->delete();
+
+        return redirect('/partidos');
     }
 }

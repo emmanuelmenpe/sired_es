@@ -10,7 +10,7 @@
         <div class="form-group">
             <label for="nombre">Nombre de equipo</label>
             <input type="text" class="form-control" name="nombre" value="{{$equipo->nombre}}" placeholder="Ingrese el nombre">
-        </div>
+        </div> 
 
         <div class="form-row">
             <div class="form-group col-md-4">

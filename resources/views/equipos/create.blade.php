@@ -23,7 +23,7 @@
                 <input type="text" class="form-control" name="empates" placeholder="Ingrese empates del equipo">
             </div>
         </div>
-
+ 
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="nombre">Derrotas</label>

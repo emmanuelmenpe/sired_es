@@ -22,7 +22,7 @@ class EquipoController extends Controller
             ->orderBy('id', 'asc')
             //->get();
             ->paginate(5);
-            $equipo = Equipo::all();
+            $equipo = Equipo::all();    
             return view('equipos.index', ['equipos'=>$equipos, 'search' => $query]);
         }
         //return view('equipos.index', ['equipos'=>Equipo::all()]);
@@ -94,7 +94,7 @@ class EquipoController extends Controller
         return redirect('/equipos');
     }
     
-    public function destroy($id)
+    public function destroy($id) 
     {
         $equipo = Equipo::findOrFail($id);
 

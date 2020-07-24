@@ -29,8 +29,8 @@
               <td>{{$partido->hora}}</td>
               <td>{{$partido->arbitro}}</td>
               <td>
-                  <form action="" method="POST">
-                      <a href="{{route('partidos.create', $partido->id)}}">
+                  <form action="{{route('partidos.destroy', $partido->id)}}" method="POST">
+                      <a href="{{route('partidos.edit', $partido->id)}}">
                           <button type="button" class="btn btn-primary btn-sm">Actalizar</button>
                       </a>
                       @csrf

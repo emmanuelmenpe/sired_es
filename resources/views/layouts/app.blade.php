@@ -54,7 +54,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Anotaciones</a>
+                    <a class="nav-link" href="{{ url('/anotaciones') }}">Anotaciones</a>
                 </li>
               </ul>
               <form class="form-inline my-2 my-lg-0">
