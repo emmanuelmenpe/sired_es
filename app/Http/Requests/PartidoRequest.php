@@ -23,9 +23,9 @@ class PartidoRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'id_local'=> 'required|unique',
-            'id_visitante'=> 'required|unique'
+        return [ 
+            'id_local'=> 'required',
+            'id_visitante'=> 'required'
         ];
     }
 }

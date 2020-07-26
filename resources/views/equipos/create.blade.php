@@ -15,16 +15,11 @@
                 <label for="nombre">Victorias</label>
                 <input type="text" class="form-control" name="victorias" placeholder="Ingrese victotias del equipo">
             </div>
-        </div>
-
-        <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="nombre">Empates</label>
                 <input type="text" class="form-control" name="empates" placeholder="Ingrese empates del equipo">
             </div>
-        </div>
- 
-        <div class="form-row">
+            
             <div class="form-group col-md-4">
                 <label for="nombre">Derrotas</label>
                 <input type="text" class="form-control" name="derrotas" placeholder="Ingrese derrotas del equipo">

@@ -2,18 +2,18 @@
 
 @section('content')
 <div class="container">
-  <h2>Lista de equipos registrados
-      <a href="equipos/create">
+  <h2>Lista de equipos registrados 
+      <a href="equipos/create"> 
         <button type="button" class="btn btn-success float-right">Agregar equipo</button>
       </a>
   </h2>
-  <h6>
+  <h6> 
     @if ($search)
       <div class="alert alert-primary" role="alert">
         Los resultados para tu busqueda '{{$search}}' son: 
       </div>
     @endif
-  </h6>
+  </h6> 
   <table class="table table-striped">
       <thead>
         <tr>
@@ -28,9 +28,9 @@
         @foreach ($equipos as $equipo)
           <tr>
               <td>{{$equipo->nombre}}</td>
-              <td>{{$equipo->id_liga}}</td>
-              <td>{{$equipo->id_rama}}</td>
-              <td>{{$equipo->id_categoria}}</td>
+              <td>{{$equipo->liga}}</td> 
+              <td>{{$equipo->rama}}</td>
+              <td>{{$equipo->categoria}}</td>
               <td> 
                   <form action="{{route('equipos.destroy', $equipo->id)}}" method="POST">
                       <a href="{{route('equipos.show', $equipo->id)}}">
@@ -51,7 +51,7 @@
     </table>
     <div class="row">
       <div class="mx-auto">
-        {{ $equipos->links() }} 
+        {{ $equipos->links() }}  
       </div>
     </div>
 </div>

@@ -13,18 +13,14 @@
                     <input type="text" class="form-control" name="cancha" placeholder="Nombre de cancha">
                 </div>
             </div>
-        </div>
-
-        <div class="form-row">
+        
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="arbitro">Arbitro</label>
                     <input type="text" class="form-control" name="arbitro" placeholder="Nombre del arbitro">
                 </div>
             </div>
-        </div>
-
-        <div class="form-row">
+        
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="fecha">fecha</label>
@@ -40,24 +36,20 @@
                     <input class="form-control" type="time" value="12:00:00" name="hora">
                 </div>
             </div>
-        </div>
-
-        <div class="form-row">
+            
             <div class="form-group col-md-4">
                 <label for="id_local">Equipo local</label>
-                <select name="id_local" class="form-control">
+                <select name="id_local"  class="form-control @error('id_local') is-invalid @enderror">
                 <option selected disabled>-</option>
                 @foreach ($equipos as $equipo)
                     <option value="{{$equipo->id}}">{{$equipo->nombre}}</option>
                 @endforeach
                 </select>
             </div>
-        </div>
-
-        <div class="form-row">
+            
             <div class="form-group col-md-4">
                 <label for="id_visitante">Equipo vistante</label>
-                <select name="id_visitante" class="form-control">
+                <select name="id_visitante" class="form-control @error('id_visitante') is-invalid @enderror">
                 <option selected disabled>-</option>
                 @foreach ($equipos as $equipo)
                     <option value="{{$equipo->id}}">{{$equipo->nombre}}</option>

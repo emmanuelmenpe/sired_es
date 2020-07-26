@@ -3,15 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PartidoRequest;
+use Illuminate\Support\Facades\DB;
 use App\Equipo; 
 use App\Partido;
 
-class PartidoController extends Controller
+class PartidoController extends Controller 
 {
-    public function index()
+    public function index(Request $request)
     {
-        //return view('partidos.index', ['partidos'=>Partido::all(), 'equipos'=>Equipo::all()]);
-        return view('partidos.index', ['partidos'=>Partido::all()]);
+        if($request){  
+            $query = trim($request->get('search'));
+
+            //return view('partidos.index', ['partidos'=>Partido::all(), 'equipos'=>Equipo::all()]);
+            $partidos = DB::table('partidos')
+            ->where('nombre','LIKE','%' . $query . '%')
+            ->orderBy('id', 'asc')
+            ->join('equipos', 'equipos.id', '=', 'partidos.id_local')
+            //->join('equipos', 'equipos.id', '=', 'partidos.id_visitante')
+            ->select('partidos.*', 'equipos.nombre')
+            //->get(); 
+            ->paginate(5);
+            /*echo "<pre>";
+            print_r($partidos);*/
+            $partidoss = DB::table('partidos')
+            ->join('equipos', 'equipos.id', '=', 'partidos.id_visitante')
+            ->select('partidos.*', 'equipos.nombre')
+            ->get(); 
+            /*echo "<pre>";
+            print_r($partidoss);*/
+            return view('partidos.index', ['partidos'=>$partidos, 'partidoss'=>$partidoss, 'search' => $query]);
+        }
     }
 
     public function create()
@@ -23,7 +45,7 @@ class PartidoController extends Controller
     public function store(Request $request)
     {
         $partido = new Partido();
-
+ 
         $partido->cancha = request('cancha');
         $partido->arbitro = request('arbitro');
         $partido->cancha = request('cancha');

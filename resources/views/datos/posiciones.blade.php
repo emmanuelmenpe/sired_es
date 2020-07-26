@@ -19,18 +19,23 @@
             <tbody>
               @foreach ($equipos as $equipo)
                 <tr>
-                    <td>g</td>
+                    <td>{{$loop->iteration}}</td>
                     <td>{{$equipo->nombre}}</td>
                     <td>{{$equipo->victorias}}</td>
                     <td>{{$equipo->empates}}</td>
                     <td>{{$equipo->derrotas}}</td>
-                    <td>{{$equipo->id_liga}}</td>
-                    <td>{{$equipo->id_rama}}</td>
-                    <td>{{$equipo->id_categoria}}</td>
+                    <td>{{$equipo->liga}}</td>
+                    <td>{{$equipo->rama}}</td>
+                    <td>{{$equipo->categoria}}</td>
                 </tr>
       
               @endforeach
             </tbody>
           </table>
+          <div class="row">
+            <div class="mx-auto">
+              {{ $equipos->links() }}   
+            </div>
+          </div>
     </div>
 @endsection

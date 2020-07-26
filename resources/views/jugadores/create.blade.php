@@ -43,7 +43,7 @@
                     <option value="0" selected>NO</option>
                     <option value="1">SI</option>
                 </select>
-                </div>
+                </div> 
                 <div class="form-group col-md-4">
                     <label for="fecha_sancion">Fecha de sancion <small>(opcional)</small></label>
                     <input class="form-control" type="date" name="fecha_sancion">

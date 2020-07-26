@@ -14,9 +14,7 @@
                     <input type="text" class="form-control" name="cancha" value="{{$partido->cancha}}" placeholder="Nombre de cancha">
                 </div>
             </div>
-        </div>
-
-        <div class="form-row">
+            
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="arbitro">Arbitro</label>
@@ -32,9 +30,7 @@
                     <input class="form-control" type="date" value="{{$partido->fecha}}" name="fecha">
                 </div>
             </div>
-        </div>
-
-        <div class="form-row">
+            
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="hora">Hora</label>

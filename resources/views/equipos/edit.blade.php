@@ -17,29 +17,26 @@
                 <label for="nombre">Victorias</label>
                 <input type="text" class="form-control" name="victorias" value="{{$equipo->victorias}}" placeholder="Ingrese victotias del equipo">
             </div>
-        </div>
-
-        <div class="form-row">
+            
             <div class="form-group col-md-4">
                 <label for="nombre">Empates</label>
                 <input type="text" class="form-control" name="empates" value="{{$equipo->empates}}" placeholder="Ingrese victotias del equipo">
             </div>
-        </div>
-
-        <div class="form-row">
+            
             <div class="form-group col-md-4">
                 <label for="nombre">Derrotas</label>
                 <input type="text" class="form-control" name="derrotas" value="{{$equipo->derrotas}}" placeholder="Ingrese victotias del equipo">
             </div>
-        </div>
-
-        <div class="form-row">
+            
             <div class="form-group col-md-4">
                 <label for="id_liga">Liga</label>
                 <select name="id_liga" class="form-control">
-                <option selected disabled>-</option>
                 @foreach ($ligas as $liga)
+                    @if ($liga->liga == $equipo->liga)
+                        <option selected value="{{$liga->id}}">{{$equipo->liga}}</option>
+                    @else
                     <option value="{{$liga->id}}">{{$liga->liga}}</option>
+                    @endif
                 @endforeach
                 </select>
             </div>
@@ -47,9 +44,12 @@
             <div class="form-group col-md-4">
                 <label for="id_rama">Rama</label>
                 <select name="id_rama" class="form-control">
-                <option selected disabled>-</option>
                 @foreach ($ramas as $rama)
-                    <option value="{{$rama->id}}">{{$rama->rama}}</option> 
+                    @if ($rama->rama == $equipo->rama)
+                        <option selected value="{{$rama->id}}">{{$equipo->rama}}</option>
+                    @else
+                        <option value="{{$rama->id}}">{{$rama->rama}}</option>
+                    @endif
                 @endforeach
                 </select>
             </div>
@@ -57,9 +57,12 @@
             <div class="form-group col-md-4">
                 <label for="id_categoria">Categoria</label>
                 <select name="id_categoria" class="form-control">
-                <option selected disabled>-</option>
                 @foreach ($categorias as $categoria)
-                <option value="{{$categoria->id}}">{{$categoria->categoria}}</option> 
+                    @if ($categoria->categoria == $equipo->categoria)
+                        <option selected  value="{{$categoria->id}}">{{$equipo->categoria}}</option>
+                    @else
+                        <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
+                    @endif
                 @endforeach
                 </select>
             </div>

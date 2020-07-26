@@ -7,9 +7,16 @@
         <button type="button" class="btn btn-success float-right">Crear partido</button>
       </a>
     </h1>
+    <h6> 
+      @if ($search)
+        <div class="alert alert-primary" role="alert">
+          Los resultados para tu busqueda '{{$search}}' son: 
+        </div>
+      @endif
+    </h6>
   <table class="table table-striped">
-      <thead>
-        <tr>
+      <thead>  
+        <tr> 
           <th scope="col">Local</th>
           <th scope="col">Visitante</th>
           <th scope="col">Cancha</th>
@@ -21,9 +28,20 @@
       </thead>
       <tbody>
         @foreach ($partidos as $partido)
-          <tr>
-              <td>{{$partido->id_local}}</td>
-              <td>{{$partido->id_visitante}}</td>
+          <tr> 
+              <td>{{$partido->nombre}}</td>
+              @php
+                  $i=1;
+                  foreach ($partidoss as $partidoo) {
+                    if ($loop->iteration == $i) {
+                      echo "<td>".$partidoo->nombre."</td>";
+                      /*echo "iteration: ".$loop->iteration;
+                      echo "id: ".$partidoo->id;*/
+                    }
+                    $i=$i+1;
+                  }
+              @endphp
+              
               <td>{{$partido->cancha}}</td>
               <td>{{$partido->fecha}}</td>
               <td>{{$partido->hora}}</td>
@@ -43,5 +61,10 @@
         @endforeach
       </tbody>
     </table>
+    <div class="row">
+      <div class="mx-auto">
+        {{ $partidos->links() }}
+      </div>
+    </div>
 </div>
 @endsection

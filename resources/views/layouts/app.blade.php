@@ -18,8 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
+
+    <title>SIRED</title>
+</head> 
 <body>
+<body background ="{{asset('images/'."fondo.jpg")}}" class="img-fluid" alt="Responsive image">
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="#">SIRED</a>

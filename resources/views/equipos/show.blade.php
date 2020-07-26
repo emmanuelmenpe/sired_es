@@ -22,15 +22,16 @@
                       <td>{{$equipo->victorias}}</td>
                       <td>{{$equipo->empates}}</td>
                       <td>{{$equipo->derrotas}}</td>
-                      <td>{{$equipo->id_liga}}</td>
-                      <td>{{$equipo->id_rama}}</td>
-                      <td>{{$equipo->id_categoria}}</td>
+                      <td>{{$equipo->liga}}</td>
+                      <td>{{$equipo->rama}}</td>
+                      <td>{{$equipo->categoria}}</td>
                     </tr>
                   </tbody>
                 </table>
                 <h1>Integrantes
-                  <a href="/jugadores/create"> <!--{{--  --}}-->
-                    <!--{{-- <a href="{{route('equipos.redirect', $equipo->id)}}"> --}}-->
+                  <!--{{--<a href="/jugadores/create">   OR
+                    <a href="{{route('jugadores.create',$equipo->id)}}">--}}-->
+                  <a href="{{route('jugadores.create')}}">
                     <button type="button" class="btn btn-success float-right">Agregar jugador</button>
                   </a>
                 </h1>
@@ -52,6 +53,12 @@
                           {{--@if ($integrantes->id_equipo == $equipo->id)--}}
                            
                           <tr>
+                            @php
+                                foreach ($integrantes as $integrante) {
+                                  if ($equipo->id== $integrante->id_equipo) {
+                                  }
+                                }
+                            @endphp
                               <td>{{$jugador->nombre}}</td>
                               <td>{{$jugador->curp}}</td> 
                               <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="sin_img" height="50px" width="50px"></td> 
