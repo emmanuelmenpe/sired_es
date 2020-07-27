@@ -2,7 +2,41 @@
 
 @section('content')
 <div class="container">
-    <h2>Estadisticas de equipos</h2>
+    <h2>Estadisticas de equipos
+      <div class="float-right">
+        <form class="form-inline my-2 my-lg-0">
+
+            <select name="filtrarC" class="form-control mr-sm-2">
+              <option value="" selected disabled>filtar por categoria</option>
+              @foreach ($categorias as $categoria)
+                <option name="filtrarC" value="{{$categoria->categoria}}">{{$categoria->categoria}}</option>
+              @endforeach
+            </select>
+
+            <select name="filtrarR" class="form-control mr-sm-2">
+              <option value="" selected disabled>filtar por rama</option>
+              @foreach ($ramas as $rama)
+                <option name="filtrarR" value="{{$rama->rama}}">{{$rama->rama}}</option>
+              @endforeach
+            </select>
+            
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filtrar</button>
+        </form>
+      </div>
+    </h2>
+    <h6> 
+      @if ($queryC)
+        <div class="alert alert-primary" role="alert">
+          Los resultados de filtración '{{$queryC}}' son: 
+        </div>
+      @endif
+
+      @if ($queryR)
+          <div class="alert alert-primary" role="alert">
+          Los resultados de filtración '{{$queryR}}' son: 
+        </div>
+      @endif
+    </h6>
     <table class="table table-striped">
         <thead>
           <tr>

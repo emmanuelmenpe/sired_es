@@ -10,21 +10,21 @@
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="cancha">Cancha</label>
-                    <input type="text" class="form-control" name="cancha" placeholder="Nombre de cancha">
+                    <input type="text" class="form-control" name="cancha" placeholder="Nombre de cancha" required>
                 </div>
             </div>
         
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="arbitro">Arbitro</label>
-                    <input type="text" class="form-control" name="arbitro" placeholder="Nombre del arbitro">
+                    <input type="text" class="form-control" name="arbitro" placeholder="Nombre del arbitro" required>
                 </div>
             </div>
         
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="fecha">fecha</label>
-                    <input class="form-control" type="date" value="2020-01-15" name="fecha">
+                    <input class="form-control" type="date" name="fecha" required>
                 </div>
             </div>
         </div>
@@ -33,13 +33,13 @@
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="hora">Hora</label>
-                    <input class="form-control" type="time" value="12:00:00" name="hora">
+                    <input class="form-control" type="time"  name="hora" required>
                 </div>
             </div>
             
             <div class="form-group col-md-4">
                 <label for="id_local">Equipo local</label>
-                <select name="id_local"  class="form-control @error('id_local') is-invalid @enderror">
+                <select name="id_local"  class="form-control" required>
                 <option selected disabled>-</option>
                 @foreach ($equipos as $equipo)
                     <option value="{{$equipo->id}}">{{$equipo->nombre}}</option>
@@ -49,7 +49,7 @@
             
             <div class="form-group col-md-4">
                 <label for="id_visitante">Equipo vistante</label>
-                <select name="id_visitante" class="form-control @error('id_visitante') is-invalid @enderror">
+                <select name="id_visitante" class="form-control" required>
                 <option selected disabled>-</option>
                 @foreach ($equipos as $equipo)
                     <option value="{{$equipo->id}}">{{$equipo->nombre}}</option>

@@ -13,7 +13,7 @@
         Los resultados para tu busqueda '{{$search}}' son: 
       </div>
     @endif
-  </h6> 
+  </h6>  
   <table class="table table-striped">
       <thead>
         <tr>

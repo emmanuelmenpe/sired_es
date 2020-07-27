@@ -9,28 +9,28 @@
         @csrf
         <div class="form-group">
             <label for="nombre">Nombre de equipo</label>
-            <input type="text" class="form-control" name="nombre" value="{{$equipo->nombre}}" placeholder="Ingrese el nombre">
+            <input type="text" class="form-control" name="nombre" value="{{$equipo->nombre}}" placeholder="Ingrese el nombre" required>
         </div> 
 
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="nombre">Victorias</label>
-                <input type="text" class="form-control" name="victorias" value="{{$equipo->victorias}}" placeholder="Ingrese victotias del equipo">
+                <input type="text" class="form-control" name="victorias" value="{{$equipo->victorias}}" placeholder="Ingrese victotias del equipo" required>
             </div>
             
             <div class="form-group col-md-4">
                 <label for="nombre">Empates</label>
-                <input type="text" class="form-control" name="empates" value="{{$equipo->empates}}" placeholder="Ingrese victotias del equipo">
+                <input type="text" class="form-control" name="empates" value="{{$equipo->empates}}" placeholder="Ingrese victotias del equipo" required>
             </div>
             
             <div class="form-group col-md-4">
                 <label for="nombre">Derrotas</label>
-                <input type="text" class="form-control" name="derrotas" value="{{$equipo->derrotas}}" placeholder="Ingrese victotias del equipo">
+                <input type="text" class="form-control" name="derrotas" value="{{$equipo->derrotas}}" placeholder="Ingrese victotias del equipo" required>
             </div>
             
             <div class="form-group col-md-4">
                 <label for="id_liga">Liga</label>
-                <select name="id_liga" class="form-control">
+                <select name="id_liga" class="form-control" required>
                 @foreach ($ligas as $liga)
                     @if ($liga->liga == $equipo->liga)
                         <option selected value="{{$liga->id}}">{{$equipo->liga}}</option>
@@ -43,7 +43,7 @@
 
             <div class="form-group col-md-4">
                 <label for="id_rama">Rama</label>
-                <select name="id_rama" class="form-control">
+                <select name="id_rama" class="form-control" required>
                 @foreach ($ramas as $rama)
                     @if ($rama->rama == $equipo->rama)
                         <option selected value="{{$rama->id}}">{{$equipo->rama}}</option>
@@ -56,7 +56,7 @@
 
             <div class="form-group col-md-4">
                 <label for="id_categoria">Categoria</label>
-                <select name="id_categoria" class="form-control">
+                <select name="id_categoria" class="form-control" required>
                 @foreach ($categorias as $categoria)
                     @if ($categoria->categoria == $equipo->categoria)
                         <option selected  value="{{$categoria->id}}">{{$equipo->categoria}}</option>

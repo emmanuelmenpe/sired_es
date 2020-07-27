@@ -31,7 +31,7 @@
                 <h1>Integrantes
                   <!--{{--<a href="/jugadores/create">   OR
                     <a href="{{route('jugadores.create',$equipo->id)}}">--}}-->
-                  <a href="{{route('jugadores.create')}}">
+                  <a href="{{route('jugadores.create', $equipo->id)}}">
                     <button type="button" class="btn btn-success float-right">Agregar jugador</button>
                   </a>
                 </h1>
@@ -49,36 +49,61 @@
                     </tr>
                   </thead>
                   <tbody>
-                      @foreach ($jugadores as $jugador)
-                          {{--@if ($integrantes->id_equipo == $equipo->id)--}}
-                           
-                          <tr>
-                            @php
-                                foreach ($integrantes as $integrante) {
-                                  if ($equipo->id== $integrante->id_equipo) {
-                                  }
-                                }
-                            @endphp
-                              <td>{{$jugador->nombre}}</td>
-                              <td>{{$jugador->curp}}</td> 
-                              <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="sin_img" height="50px" width="50px"></td> 
-                              <td>{{$jugador->sancion}}</td>
-                              <td>{{$jugador->motivo}}</td>
-                              <td>{{$jugador->fecha_sancion}}</td>
-                              <td>{{$jugador->fecha_fin}}</td>
-                              <td> 
-                                <form action="{{route('jugadores.destroy', $jugador->id)}}" method="POST">
-                                    <a href="{{route('jugadores.edit', $jugador->id)}}">
-                                        <button type="button" class="btn btn-primary btn-sm">Editar</button>
-                                    </a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                </form>
-                            </td>
-                          </tr>
-                          {{--@endif--}}
-                      @endforeach
+                    @foreach ( $jugadores as $jugador)
+                    @if ($equipo->id == $jugador->id_equipo)
+                    @if ($jugador->sancion == 0)
+                      <tr>
+                        <td>{{$jugador->nombre}}</td> 
+                        <td>{{$jugador->curp}}</td> 
+                        <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="no_img" height="50px" width="50px"></td> 
+                        @if ($jugador->sancion == 0)
+                          <td>NO</td>
+                        @else
+                          <td>SI</td>
+                        @endif
+                        <td>{{$jugador->motivo}}</td>
+                        <td>{{$jugador->fecha_sancion}}</td>
+                        <td>{{$jugador->fecha_fin}}</td>
+                        <td> 
+                          <form action="{{route('jugadores.destroy', $jugador->id)}}" method="POST">
+                              <a href="{{route('jugadores.edit', $jugador->id)}}">
+                                  <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                              </a>
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                          </form>
+                        </td>
+                      </tr>  
+                    @else
+                      <tr style="background-color: #FF4200">
+                        <td>{{$jugador->nombre}}</td> 
+                        <td>{{$jugador->curp}}</td> 
+                        <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="no_img" height="50px" width="50px"></td> 
+                        @if ($jugador->sancion == 0)
+                          <td>NO</td>
+                        @else
+                          <td>SI</td>
+                        @endif
+                        <td>{{$jugador->motivo}}</td>
+                        <td>{{$jugador->fecha_sancion}}</td>
+                        <td>{{$jugador->fecha_fin}}</td>
+                        <td> 
+                          <form action="{{route('jugadores.destroy', $jugador->id)}}" method="POST">
+                              <a href="{{route('jugadores.edit', $jugador->id)}}">
+                                  <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                              </a>
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                          </form>
+                        </td>
+                      </tr>
+                    @endif
+                      
+                    @endif
+                        
+                    @endforeach
                   </tbody>
                 </table>
           </div>

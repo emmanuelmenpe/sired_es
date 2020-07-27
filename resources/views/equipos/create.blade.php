@@ -7,29 +7,29 @@
         @csrf
         <div class="form-group">
             <label for="nombre">Nombre de equipo</label>
-            <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre">
+            <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre" required>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="nombre">Victorias</label>
-                <input type="text" class="form-control" name="victorias" placeholder="Ingrese victotias del equipo">
+                <input type="text" class="form-control" name="victorias" placeholder="Ingrese victotias del equipo" required>
             </div>
             <div class="form-group col-md-4">
                 <label for="nombre">Empates</label>
-                <input type="text" class="form-control" name="empates" placeholder="Ingrese empates del equipo">
+                <input type="text" class="form-control" name="empates" placeholder="Ingrese empates del equipo" required>
             </div>
             
             <div class="form-group col-md-4">
                 <label for="nombre">Derrotas</label>
-                <input type="text" class="form-control" name="derrotas" placeholder="Ingrese derrotas del equipo">
+                <input type="text" class="form-control" name="derrotas" placeholder="Ingrese derrotas del equipo" required>
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="id_liga">Liga</label>
-                <select name="id_liga" class="form-control">
+                <select name="id_liga" class="form-control" required>
                 <option selected disabled>-</option>
                 @foreach ($ligas as $liga)
                     <option value="{{$liga->id}}">{{$liga->liga}}</option>
@@ -39,7 +39,7 @@
 
             <div class="form-group col-md-4">
                 <label for="id_rama">Rama</label>
-                <select name="id_rama" class="form-control">
+                <select name="id_rama" class="form-control" required>
                 <option selected disabled>-</option>
                 @foreach ($ramas as $rama)
                     <option value="{{$rama->id}}">{{$rama->rama}}</option> 
@@ -49,7 +49,7 @@
 
             <div class="form-group col-md-4">
                 <label for="id_categoria">Categoria</label>
-                <select name="id_categoria" class="form-control">
+                <select name="id_categoria" class="form-control" required>
                 <option selected disabled>-</option>
                 @foreach ($categorias as $categoria)
                 <option value="{{$categoria->id}}">{{$categoria->categoria}}</option> 

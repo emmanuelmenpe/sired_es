@@ -11,14 +11,14 @@
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="cancha">Cancha</label>
-                    <input type="text" class="form-control" name="cancha" value="{{$partido->cancha}}" placeholder="Nombre de cancha">
+                    <input type="text" class="form-control" name="cancha" value="{{$partido->cancha}}" placeholder="Nombre de cancha" required>
                 </div>
             </div>
             
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="arbitro">Arbitro</label>
-                    <input type="text" class="form-control" name="arbitro" value="{{$partido->arbitro}}" placeholder="Nombre del arbitro">
+                    <input type="text" class="form-control" name="arbitro" value="{{$partido->arbitro}}" placeholder="Nombre del arbitro" required>
                 </div>
             </div>
         </div>
@@ -27,14 +27,14 @@
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="fecha">fecha</label>
-                    <input class="form-control" type="date" value="{{$partido->fecha}}" name="fecha">
+                    <input class="form-control" type="date" value="{{$partido->fecha}}" name="fecha" required>
                 </div>
             </div>
             
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="hora">Hora</label>
-                    <input class="form-control" type="time" value="{{$partido->hora}}" name="hora">
+                    <input class="form-control" type="time" value="{{$partido->hora}}" name="hora" required>
                 </div>
             </div>
         </div>

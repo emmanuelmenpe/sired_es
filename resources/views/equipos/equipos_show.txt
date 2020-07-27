@@ -1,0 +1,34 @@
+equipos/show
+<tbody>
+                    <!--{{----}}-->
+                      @foreach ($jugadores as $jugador)
+                          {{--@if ($integrantes->id_equipo == $equipo->id)--}}
+                           
+                          <tr>
+                            @php
+                                foreach ($integrantes as $integrante) {
+                                  if ($equipo->id== $integrante->id_equipo) {
+                                  }
+                                } 
+                            @endphp
+                              <td>{{$jugador->nombre}}</td>
+                              <td>{{$jugador->curp}}</td> 
+                              <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="sin_img" height="50px" width="50px"></td> 
+                              <td>{{$jugador->sancion}}</td>
+                              <td>{{$jugador->motivo}}</td>
+                              <td>{{$jugador->fecha_sancion}}</td>
+                              <td>{{$jugador->fecha_fin}}</td>
+                              <td> 
+                                <form action="{{route('jugadores.destroy', $jugador->id)}}" method="POST">
+                                    <a href="{{route('jugadores.edit', $jugador->id)}}">
+                                        <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                                    </a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                            </td>
+                          </tr>
+                          {{--@endif--}}
+                      @endforeach
+                  </tbody>

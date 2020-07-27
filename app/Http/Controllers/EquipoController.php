@@ -18,13 +18,13 @@ class EquipoController extends Controller
     public function index(Request $request)
     {
         if($request){  
-            $query = trim($request->get('search'));
+            $query = trim($request->get('search')); 
             /*$equipos = Equipo::where('nombre','LIKE','%' . $query . '%')
             ->orderBy('id', 'asc')
             //->get(); 
             ->paginate(5);*/ 
             $equipos = DB::table('equipos')
-            ->where('nombre','LIKE','%' . $query . '%')
+            ->where('nombre','LIKE','%' . $query . '%') 
             ->orderBy('id', 'asc') 
             ->join('ligas', 'ligas.id', '=', 'equipos.id_liga')
             ->join('ramas', 'ramas.id', '=', 'equipos.id_rama')
@@ -78,14 +78,18 @@ class EquipoController extends Controller
         ->select('ligas.liga','ramas.rama','categorias.categoria','equipos.*')
         ->where('equipos.id', '=', $id)->first();
         //->get();
-        $jugadores = Jugador::all();
-        $integrantes = Integrantes::all(); 
-
-        return view('equipos.show',['equipo' =>  $equipo, 'jugadores'=> $jugadores, 'integrantes' => $integrantes]);
+        /*$jugadores = Jugador::all();
+        $integrantes = Integrantes::all(); */
+        $jugadores = DB::table('jugadors')
+        ->join('integrantes', 'integrantes.id_jugador', 'jugadors.id')
+        ->select('integrantes.*', 'jugadors.*');
+        $jugadores = $jugadores->get(); 
+        return view('equipos.show',['equipo' =>  $equipo, 'jugadores'=> $jugadores]);
         /*return view('equipos.show',['equipo'=> Equipo::findOrFail($id), 
         'integrantes'=> Integrantes::all(),
         'jugadores'=>Jugador::all()  ]);
         dd('integrantes');*/
+
     }
     
     public function edit($id)

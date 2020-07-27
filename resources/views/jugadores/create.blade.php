@@ -9,26 +9,26 @@
             <div class="row">
                 <div class="form-group col-md-4">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" name="nombre" placeholder="Nombre de jugador">
+                <input type="text" class="form-control" name="nombre" placeholder="Nombre de jugador" required>
                 </div>
 
                 <div class="form-group col-md-4">
                 <label for="curp">CURP</label>
-                <input type="text" class="form-control" name="curp" placeholder="agregue CURP del jugador">
+                <input type="text" class="form-control" name="curp" placeholder="agregue CURP del jugador" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-md-4">
                     <label for="fotografia">Fotografia</label>
-                    <input type="file" name="fotografia" class="form-control">
+                    <input type="file" name="fotografia" class="form-control" required>
                 </div>
 
                 <div class="form-group col-md-4">
                     <label for="id_equipo">Equipo al que pertenece</label>
-                    <select name="id_equipo" class="form-control">
+                    <select name="id_equipo" class="form-control" required>
                         <option selected>-</option>
-                        @foreach ($equipos as $equipo)
+                        @foreach ($equipos as $equipo) 
                             <option value="{{$equipo->id}}">{{$equipo->nombre}}</option>
                         @endforeach
                     </select>
@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="form-group col-md-4">
                 <label for="sancion">Sancionado</label>
-                <select name="sancion" class="form-control">
+                <select name="sancion" class="form-control" required>
                     <option value="0" selected>NO</option>
                     <option value="1">SI</option>
                 </select>

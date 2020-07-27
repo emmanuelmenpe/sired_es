@@ -13,6 +13,6 @@ Route::resource('anotaciones', 'AnotacionController');
 
 Route::resource('equipos', 'EquipoController');
 Route::resource('jugadores', 'JugadorController');
-Route::get('/jugadores/create{id}', 'JugadorController@create');
+//Route::get('/jugadores/create{id}', 'JugadorController@create');
 Route::resource('partidos', 'PartidoController');//->middleware('valPar');
 

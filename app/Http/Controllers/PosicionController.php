@@ -5,24 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Equipo;
+use App\Categoria;
 
 class PosicionController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     { 
         
         //$equipos = Equipo::orderBy('victorias','DESC')->get();
         //$equipos = Equipo::all();
+        $categorias = Categoria::all(); 
+        $query = trim($request->get('filtrar')); 
+
+        $categorias = Categoria::all();
         $equipos = DB::table('equipos')
         ->orderBy('victorias','DESC')
         ->join('ligas', 'ligas.id', '=', 'equipos.id_liga')
         ->join('ramas', 'ramas.id', '=', 'equipos.id_rama')
         ->join('categorias', 'categorias.id', '=', 'equipos.id_categoria')
         ->select('equipos.*', 'ligas.liga','ramas.rama', 'categorias.categoria')
+        ->where('categorias.categoria','LIKE','%' . $query . '%')
         //->get();
         ->paginate(5);
-        return view('datos.posiciones', ['equipos'=>$equipos]);
+        return view('datos.posiciones', ['equipos'=>$equipos, 'categorias' => $categorias, 'query'=> $query]);
     }
     
     public function create()
