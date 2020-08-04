@@ -19,9 +19,9 @@ class CreateEquipoTable extends Migration
             $table->integer('victorias')->default('0');
             $table->integer('empates')->default('0');
             $table->integer('derrotas')->default('0');
-            $table->foreignId('id_liga')->references('id')->on('liga');
-            $table->foreignId('id_rama')->references('id')->on('rama');
-            $table->foreignId('id_categoria')->references('id')->on('categoria');
+            $table->foreignId('id_liga')->references('id')->on('ligas');
+            $table->foreignId('id_rama')->references('id')->on('ramas');
+            $table->foreignId('id_categoria')->references('id')->on('categorias');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateEquipoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipo');
+        Schema::dropIfExists('equipos');
     }
 }

@@ -15,8 +15,8 @@ class CreatePartidoTable extends Migration
     {
         Schema::create('partidos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('id_local')->references('id')->on('equipo');
-            $table->foreignId('id_visitante')->references('id')->on('equipo');
+            $table->foreignId('id_local')->references('id')->on('equipos');
+            $table->foreignId('id_visitante')->references('id')->on('equipos');
             $table->string('cancha', 255);
             $table->date('fecha');
             $table->time('hora', 0);	
@@ -32,6 +32,6 @@ class CreatePartidoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('partido');
+        Schema::dropIfExists('partidos');
     }
 }

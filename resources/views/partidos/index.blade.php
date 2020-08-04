@@ -51,6 +51,9 @@
                       <a href="{{route('partidos.edit', $partido->id)}}">
                           <button type="button" class="btn btn-primary btn-sm">Actalizar</button>
                       </a>
+                      <a href="{{route('resultados.edit', $partido->id)}}">
+                        <button type="button" class="btn btn-secondary btn-sm">Definir resultados</button>
+                    </a>
                       @csrf
                       @method('DELETE')
                       <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>

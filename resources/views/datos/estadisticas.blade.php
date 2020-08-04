@@ -25,17 +25,17 @@
       </div>
     </h2>
     <h6> 
-      @if ($queryC)
+      @if ($queryC || $queryR)
         <div class="alert alert-primary" role="alert">
-          Los resultados de filtración '{{$queryC}}' son: 
+          Los resultados de filtración '{{$queryC}} {{$queryR}}' son: 
         </div>
       @endif
-
+        <!--{{---
       @if ($queryR)
           <div class="alert alert-primary" role="alert">
           Los resultados de filtración '{{$queryR}}' son: 
         </div>
-      @endif
+      @endif--}}-->
     </h6>
     <table class="table table-striped">
         <thead>

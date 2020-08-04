@@ -15,8 +15,8 @@ class CreateIntegrantesTable extends Migration
     {
         Schema::create('integrantes', function (Blueprint $table) {
             $table->bigIncrements('id_integrantes');
-            $table->foreignId('id_equipo')->references('id')->on('equipo');
-            $table->foreignId('id_jugador')->references('id')->on('jugador');
+            $table->foreignId('id_equipo')->references('id')->on('equipos');
+            $table->foreignId('id_jugador')->references('id')->on('jugadors');
             $table->timestamps();
         });
     }

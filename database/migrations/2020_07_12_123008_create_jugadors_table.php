@@ -18,6 +18,7 @@ class CreateJugadorTable extends Migration
             $table->string('nombre', 255);
             $table->string('curp', 18);
             $table->string('fotografia', 255);
+            $table->integer('goles')->default('0');
             $table->boolean('sancion')->default('0');	
             $table->string('motivo', 255)->nullable();
             $table->date('fecha_sancion')->nullable();
@@ -33,6 +34,6 @@ class CreateJugadorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jugador');
+        Schema::dropIfExists('jugadors');
     }
 }

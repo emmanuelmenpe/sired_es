@@ -10,14 +10,14 @@
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="cancha">Cancha</label>
-                    <input type="text" class="form-control" name="cancha" placeholder="Nombre de cancha" required>
+                    <input type="text" class="form-control" name="cancha" maxlength="255" placeholder="Nombre de cancha" required>
                 </div>
             </div>
         
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="arbitro">Arbitro</label>
-                    <input type="text" class="form-control" name="arbitro" placeholder="Nombre del arbitro" required>
+                    <input type="text" class="form-control" name="arbitro" maxlength="255" placeholder="Nombre del arbitro" required>
                 </div>
             </div>
         

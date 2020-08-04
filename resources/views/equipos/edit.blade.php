@@ -15,17 +15,17 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="nombre">Victorias</label>
-                <input type="text" class="form-control" name="victorias" value="{{$equipo->victorias}}" placeholder="Ingrese victotias del equipo" required>
+                <input type="number" class="form-control" name="victorias" min="{{$equipo->victorias}}" value="{{$equipo->victorias}}" placeholder="Ingrese victotias del equipo" required>
             </div>
             
             <div class="form-group col-md-4">
                 <label for="nombre">Empates</label>
-                <input type="text" class="form-control" name="empates" value="{{$equipo->empates}}" placeholder="Ingrese victotias del equipo" required>
+                <input type="number" class="form-control" name="empates" min="{{$equipo->empates}}" value="{{$equipo->empates}}" placeholder="Ingrese victotias del equipo" required>
             </div>
             
             <div class="form-group col-md-4">
                 <label for="nombre">Derrotas</label>
-                <input type="text" class="form-control" name="derrotas" value="{{$equipo->derrotas}}" placeholder="Ingrese victotias del equipo" required>
+                <input type="number" class="form-control" name="derrotas" min="{{$equipo->derrotas}}" value="{{$equipo->derrotas}}" placeholder="Ingrese victotias del equipo" required>
             </div>
             
             <div class="form-group col-md-4">

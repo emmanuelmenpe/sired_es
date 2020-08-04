@@ -55,9 +55,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/posiciones') }}">Posicioines</a>
                 </li>
-
+                {{--
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/anotaciones') }}">Anotaciones</a>
+                </li>
+                --}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Anotaciones
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ url('/anotaciones/futbol') }}">Futbol</a>
+                        <a class="dropdown-item" href="{{ url('/anotaciones/basquetbol') }}">Basquetbol</a>
+                        <div class="dropdown-divider"></div>
+                    </div>
                 </li>
               </ul>
               <form class="form-inline my-2 my-lg-0">

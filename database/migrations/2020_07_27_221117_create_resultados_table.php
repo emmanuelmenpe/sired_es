@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRamaTable extends Migration
+class CreateResultadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,24 @@ class CreateRamaTable extends Migration
      */
     public function up()
     {
-        Schema::create('ramas', function (Blueprint $table) {
+        Schema::create('resultados', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('rama', 255);
+            $table->integer('id_ganador');
+            $table->integer('id_perdedor');
+            $table->integer('goles_ganador');
+            $table->integer('goles_perdedor');
+            $table->foreignId('id')->references('id')->on('partidos');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
+     * 
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('ramas');
+        Schema::dropIfExists('resultados');
     }
 }

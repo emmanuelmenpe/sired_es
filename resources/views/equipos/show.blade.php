@@ -41,6 +41,7 @@
                       <th scope="col">Nombre</th>
                       <th scope="col">CURP</th>
                       <th scope="col">Fotografia</th>
+                      <th scope="col">goles</th>
                       <th scope="col">Sancionado</th>
                       <th scope="col">Motivo</th>
                       <th scope="col">Fecha sancion</th>
@@ -56,6 +57,7 @@
                         <td>{{$jugador->nombre}}</td> 
                         <td>{{$jugador->curp}}</td> 
                         <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="no_img" height="50px" width="50px"></td> 
+                        <td>{{$jugador->goles}}</td> 
                         @if ($jugador->sancion == 0)
                           <td>NO</td>
                         @else
@@ -76,10 +78,11 @@
                         </td>
                       </tr>  
                     @else
-                      <tr style="background-color: #FF4200">
+                      <tr style="border: red 5px solid">
                         <td>{{$jugador->nombre}}</td> 
                         <td>{{$jugador->curp}}</td> 
                         <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="no_img" height="50px" width="50px"></td> 
+                        <td>{{$jugador->goles}}</td>
                         @if ($jugador->sancion == 0)
                           <td>NO</td>
                         @else

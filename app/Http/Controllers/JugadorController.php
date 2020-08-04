@@ -29,6 +29,7 @@ class JugadorController extends Controller
 
         $jugador->nombre = request('nombre');
         $jugador->curp = request('curp');
+        $jugador->goles = request('goles'); 
 
         if ($request->hasFile('fotografia')) {
             $file = $request->fotografia;
@@ -70,6 +71,7 @@ class JugadorController extends Controller
 
         $jugador->nombre = request('nombre');
         $jugador->curp = request('curp');
+        $jugador->goles = request('goles');
 
         if ($request->hasFile('fotografia')) { 
             $file = $request->fotografia;

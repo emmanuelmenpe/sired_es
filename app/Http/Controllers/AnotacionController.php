@@ -8,9 +8,9 @@ class AnotacionController extends Controller
 {
     public function index()
     {
-        return view('datos.anotaciones');
+        //return view('datos.anotacionesFutbol');
     }
-
+ 
     public function create()
     {
         //

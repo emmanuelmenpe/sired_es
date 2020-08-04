@@ -32,7 +32,7 @@ class EquipoController extends Controller
             ->select('equipos.*', 'ligas.liga','ramas.rama', 'categorias.categoria')
             //->get() 
             ->paginate(5);
-            $equipo = Equipo::all();    
+            $equipo = Equipo::all();     
             return view('equipos.index', ['equipos'=>$equipos, 'search' => $query]);
         }
         //return view('equipos.index', ['equipos'=>Equipo::all()]);

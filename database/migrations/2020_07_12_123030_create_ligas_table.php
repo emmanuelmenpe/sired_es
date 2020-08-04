@@ -27,6 +27,6 @@ class CreateLigaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('liga');
+        Schema::dropIfExists('ligas');
     }
 }
