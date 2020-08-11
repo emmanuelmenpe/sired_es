@@ -5,54 +5,63 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PartidoRequest;
 use Illuminate\Support\Facades\DB;
-use App\Equipo; 
+use App\Equipo;
+use App\Integrantes;
+use App\Resultado; 
 use App\Partido;
+use App\Canchas;
+use App\Arbitros;
 
 class PartidoController extends Controller 
 {
     public function index(Request $request)
     {
-        if($request){  
-            $query = trim($request->get('search'));
+        $equipos = Equipo::all();
+        $resultados = Resultado::all();
+        //return view('partidos.index', ['partidos'=>Partido::all(), 'equipos'=>Equipo::all()]);
+        $partidos = DB::table('partidos')
+        //->where('nombre','LIKE','%' . $query . '%')
+        ->orderBy('id', 'desc')
+        ->join('canchas', 'canchas.id', '=', 'partidos.id_cancha')
+        ->join('arbitros', 'arbitros.id', '=', 'partidos.id_arbitro')
+        //->join('equipos', 'equipos.id', '=', 'partidos.id_visitante')
+        ->select('partidos.*','canchas.cancha', 'arbitros.arbitro')
+        ->get();
 
-            //return view('partidos.index', ['partidos'=>Partido::all(), 'equipos'=>Equipo::all()]);
-            $partidos = DB::table('partidos')
-            ->where('nombre','LIKE','%' . $query . '%')
-            ->orderBy('id', 'asc')
-            ->join('equipos', 'equipos.id', '=', 'partidos.id_local')
-            //->join('equipos', 'equipos.id', '=', 'partidos.id_visitante')
-            ->select('partidos.*', 'equipos.nombre')
-            //->get(); 
-            ->paginate(5);
-            /*echo "<pre>";
-            print_r($partidos);*/
-            $partidoss = DB::table('partidos')
-            ->join('equipos', 'equipos.id', '=', 'partidos.id_visitante')
-            ->select('partidos.*', 'equipos.nombre')
-            ->get(); 
-            /*echo "<pre>";
-            print_r($partidoss);*/
-            return view('partidos.index', ['partidos'=>$partidos, 'partidoss'=>$partidoss, 'search' => $query]);
-        }
+        
+        //->paginate(5);
+        /*echo "<pre>";
+        print_r($partidos);*/
+        /*$partidoss = DB::table('partidos')
+        ->join('equipos', 'equipos.id', '=', 'partidos.id_visitante')
+        ->select('partidos.*', 'equipos.nombre')
+        ->get(); 
+        /*echo "<pre>";
+        print_r($partidoss);*/
+        return view('partidos.index', ['partidos'=>$partidos, 'equipos'=>$equipos, 'resultados'=>$resultados]);
+        
     }
 
-    public function create()
-    {
+    public function create(){
+    
         $equipos = Equipo::all();
-        return view('partidos.create', ['equipos'=>$equipos]);
+        $integrantes = Integrantes::all();
+        $canchas = Canchas::all();
+        $abitros = Arbitros::all();
+        return view('partidos.create', ['equipos'=>$equipos,'integrantes'=>$integrantes, 
+        'canchas'=>$canchas, 'arbitros'=>$abitros]);
     }
     
-    public function store(Request $request)
+    public function store(PartidoRequest $request)
     {
         $partido = new Partido();
  
-        $partido->cancha = request('cancha');
-        $partido->arbitro = request('arbitro');
-        $partido->cancha = request('cancha');
-        $partido->fecha = request('fecha');
-        $partido->hora = request('hora');
-        $partido->id_local = request('id_local');
-        $partido->id_visitante = request('id_visitante');
+        $partido->id_arbitro = $request->arbitro;
+        $partido->id_cancha = $request->cancha;
+        $partido->fecha = $request->fecha;
+        $partido->hora = $request->hora;
+        $partido->id_local = $request->local;
+        $partido->id_visitante = $request->visitante;
 
         $partido->save();
         return redirect('/partidos');
@@ -65,16 +74,27 @@ class PartidoController extends Controller
     
     public function edit($id)
     {
-        $partido = Partido::findOrFail($id);
-        return view('partidos.edit',['partido' => $partido]);
+        $partido = Partido::findOrFail($id);//->first();
+        //dd($partido);
+        $canchas = Canchas::all();
+        $arbitros = Arbitros::alL();
+        return view('partidos.edit',['partido' => $partido, 'canchas'=>$canchas, 'arbitros'=>$arbitros]);
     }
     
     public function update(Request $request, $id)
     {
-        $partido = Partido::findOrFail($id);
+        $partido = Partido::findOrFail($id);//->first();
+       //dd($partido);
+        /*
+        $canchaB = $request->get('canchaB');
+        $arbitroB = $request->get('arbitroB');
+
+        $cancha = Canchas::findOrFail($cnahcB);
+        $arbitro = Arbitros::findOrFail($arbitroB);
         
-        $partido->cancha = $request->get('cancha');
-        $partido->arbitro = $request->get('arbitro');
+        $cancha->cancha*/
+        $partido->id_cancha = $request->get('cancha');
+        $partido->id_arbitro = $request->get('arbitro');
         $partido->fecha = $request->get('fecha');
         $partido->hora = $request->get('hora');
 
@@ -86,9 +106,9 @@ class PartidoController extends Controller
     public function destroy($id)
     {
         $partido = Partido::findOrFail($id);
-
+        
         $partido->delete();
-
+        
         return redirect('/partidos');
     }
 }

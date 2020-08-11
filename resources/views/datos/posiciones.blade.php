@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>tabla de posiciones
+        <h2>Tabla de posiciones
           <div class="float-right">
             <form class="form-inline my-2 my-lg-0">
                 <select name="filtrar" class="form-control mr-sm-2">
@@ -28,14 +28,13 @@
         <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">#posicion</th>
+                <th scope="col">#Posición</th>
                 <th scope="col">Equipo</th>
                 <th scope="col">Victorias</th>
                 <th scope="col">Empates</th>
                 <th scope="col">Derrotas</th>
-                <th scope="col">Liga</th>
                 <th scope="col">Rama</th>
-                <th scope="col">Categoria</th>
+                <th scope="col">Categoría</th>
               </tr>
             </thead>
             <tbody> 
@@ -46,7 +45,6 @@
                     <td>{{$equipo->victorias}}</td>
                     <td>{{$equipo->empates}}</td>
                     <td>{{$equipo->derrotas}}</td>
-                    <td>{{$equipo->liga}}</td>
                     <td>{{$equipo->rama}}</td>
                     <td>{{$equipo->categoria}}</td>
                 </tr>

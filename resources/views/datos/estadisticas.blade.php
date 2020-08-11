@@ -44,9 +44,8 @@
             <th scope="col">% Victorias</th>
             <th scope="col">% Empates</th>
             <th scope="col">% Derrotas</th>
-            <th scope="col">Liga</th>
             <th scope="col">Rama</th>
-            <th scope="col">Categoria</th>
+            <th scope="col">Categoría</th>
           </tr>
         </thead>
         <tbody>
@@ -80,7 +79,6 @@
                       echo "<td>$equipo->derrotas</td>";
                     }
                 @endphp
-                <td>{{$equipo->liga}}</td>
                 <td>{{$equipo->rama}}</td>
                 <td>{{$equipo->categoria}}</td>
             </tr>

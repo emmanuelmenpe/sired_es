@@ -10,7 +10,7 @@ class AnotacionFutbolController extends Controller
     
     public function index(Request $request)
     { 
-        if($request){  
+        if($request){   
             $query = trim($request->get('search'));
             $equipos = DB::table('equipos')  
             /*->join('ligas', 'equipos.id_liga', '=', 'ligas.id')

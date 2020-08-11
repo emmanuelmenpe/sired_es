@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\JugadorRequest;
 use Illuminate\Support\Facades\DB;
 use App\Equipo;
 use App\Jugador;
@@ -16,35 +17,37 @@ class JugadorController extends Controller
         //
     }
     
-    public function create()
+    public function create(Request $request, $id)
     {
-        $equipos = Equipo::all();
-        return view('jugadores.create',['equipos'=>$equipos]);
+        $equipo = Equipo::findOrFail($id);
+        $jugadores = DB::table('jugadors')
+        ->join('integrantes', 'integrantes.id_jugador', 'jugadors.id')
+        ->select('integrantes.*', 'jugadors.*');
+        $jugadores = $jugadores->get(); 
+        return view('jugadores.create',['id'=>$id, 'equipo'=>$equipo, 'jugadores'=>$jugadores]);
     }
     
-    public function store(Request $request)
+    public function store(JugadorRequest $request)
     {
         $jugador = new Jugador();
-        $integrante = new Integrantes();
+        $integrante = new Integrantes(); 
 
-        $jugador->nombre = request('nombre');
-        $jugador->curp = request('curp');
-        $jugador->goles = request('goles'); 
-
+        $jugador->nombre = $request->nombre;
+        $jugador->curp = $request->curp;
+ 
         if ($request->hasFile('fotografia')) {
             $file = $request->fotografia;
             $file->move(public_path() . '/images', $file->getClientOriginalName());
             $jugador->fotografia = $file->getClientOriginalName();
         }
-
-        $jugador->sancion = request('sancion');
-        $jugador->motivo = request('motivo'); 
-        $jugador->fecha_sancion = request('fecha_sancion');
-        $jugador->fecha_fin = request('fecha_fin');    
+        
+        if (isset($_POST["manager"])) {
+            $jugador->manager = 1;
+         }
 
         $jugador->save();
         
-        $integrante->id_equipo = request('id_equipo');
+        $integrante->id_equipo = request('id_equipo'); 
         $jugadorl = Jugador::all()->last();
         $integrante->id_jugador = $jugadorl->id;
         $integrante->save();
@@ -54,41 +57,45 @@ class JugadorController extends Controller
 
     public function show($id)
     {
-        //
+        $jugador = Jugador::findOrFail($id);
+        $historiales = DB::table('historials')
+        ->join('sancions', 'sancions.id', '=', 'historials.id_sancion')
+        ->select('historials.*','sancions.*')
+        ->get();
+        return view('jugadores.show',['jugador'=>$jugador, 'historiales'=>$historiales]);
     }
     
     public function edit($id)
     {
         $jugador = Jugador::findOrFail($id);
-        $equipos = Equipo::All();
+        //$equipos = Equipo::All();
 
-        return view('jugadores.edit', ['jugador'=>$jugador, 'equipos'=>$equipos]);
+        return view('jugadores.edit', ['jugador'=>$jugador]);
     }
     
     public function update(Request $request, $id)
     {
         $jugador = Jugador::findOrFail($id);
+        $equipo = DB::table('integrantes')
+        ->where('id_jugador','LIKE','%' . $jugador->id . '%')
+        ->first();
 
-        $jugador->nombre = request('nombre');
-        $jugador->curp = request('curp');
-        $jugador->goles = request('goles');
-
+        $jugador->nombre = $request->nombre;
+        $jugador->curp = $request->curp;
+        $jugador->goles = $request->goles;
+        $jugador->goles_penal = $request->penal;
+        $jugador->goles_asistencia = $request->asistencia;
         if ($request->hasFile('fotografia')) { 
             $file = $request->fotografia;
             $file->move(public_path() . '/images', $file->getClientOriginalName());
             $jugador->fotografia = $file->getClientOriginalName();
-        }
-
-        $jugador->sancion = request('sancion');
-        $jugador->motivo = request('motivo');
-        $jugador->fecha_sancion = request('fecha_sancion');
-        $jugador->fecha_fin = request('fecha_fin');    
+        }  
 
         $jugador->update();
         
         //return redirect()->back();
-        return redirect('/equipos');
-        
+        return redirect('equipos/'.$equipo->id_equipo);
+         
     }
     
     public function destroy($id)

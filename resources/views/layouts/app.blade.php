@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'SIRED') }}</title>
+    {{--<title>{{ config('app.name', 'Laravel') }}</title>--}}
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,8 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <title>SIRED</title>
+    
+    
 </head> 
 <body>
 <body background ="{{asset('images/'."fondo.jpg")}}" class="img-fluid" alt="Responsive image">
@@ -47,36 +48,64 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/resultados') }}">Resultados</a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/estadisticas') }}">Estadisticas</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/posiciones') }}">Posicioines</a>
-                </li>
                 {{--
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/anotaciones') }}">Anotaciones</a>
+                    <a class="nav-link" href="{{ url('/estadisticas') }}">Estadísticas</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/posiciones') }}">Posiciones</a>
                 </li>
                 --}}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Anotaciones
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url('/anotaciones/futbol') }}">Futbol</a>
-                        <a class="dropdown-item" href="{{ url('/anotaciones/basquetbol') }}">Basquetbol</a>
-                        <div class="dropdown-divider"></div>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/anotaciones/futbol') }}">Anotaciones</a>
                 </li>
+                @can('administrador')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/canchas') }}">Canchas</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/arbitros') }}">Arbitros</a>
+                    </li>
+                @endcan
+                <i class="fas fa-bars"></i>
               </ul>
+              {{--
               <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" name="search" type="search" placeholder="Buscar equipo" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
               </form>
+              --}}
             </div>
-          </nav>
+
+            <div class="list-group" style="background-color: cornflowerblue">
+                <a href="#" class="d-block">
+                    @guest
+                    <!--MOSTRAR IMAGEN DE USUARIO QUE INICIO SESION-->
+                    <a class="nav-link" href="{{ route('login') }}">
+                        {{ __('Iniciar Sesión') }} 
+                    </a>
+                    @else
+                    {{--
+                    {{ Auth::user()->name }}
+                    --}}
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        Cerrar Sesión
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                        style="display: none;">
+                        @csrf
+                    </form>
+
+                    @endguest
+                </a>
+            </div>
+
+        </nav>
+          
         <!--{{--
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -131,7 +160,14 @@
         --}}--->
         <main class="py-4">
             @yield('content')
+            
         </main>
+        {{--
+        <section class="content">
+           <div class="container" style="margin-left: auto; margin-right:auto; margin-top: 40px;">
+                @yield('content')
+            </div> 
+        </section>--}}
     </div>
 </body>
 </html>

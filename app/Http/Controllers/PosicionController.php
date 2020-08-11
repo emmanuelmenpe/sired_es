@@ -21,10 +21,9 @@ class PosicionController extends Controller
         $categorias = Categoria::all();
         $equipos = DB::table('equipos')
         ->orderBy('victorias','DESC')
-        ->join('ligas', 'ligas.id', '=', 'equipos.id_liga')
         ->join('ramas', 'ramas.id', '=', 'equipos.id_rama')
         ->join('categorias', 'categorias.id', '=', 'equipos.id_categoria')
-        ->select('equipos.*', 'ligas.liga','ramas.rama', 'categorias.categoria')
+        ->select('equipos.*','ramas.rama', 'categorias.categoria')
         ->where('categorias.categoria','LIKE','%' . $query . '%')
         //->get();
         ->paginate(5);

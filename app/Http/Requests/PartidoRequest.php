@@ -24,8 +24,13 @@ class PartidoRequest extends FormRequest
     public function rules()
     {
         return [ 
-            'id_local'=> 'required',
-            'id_visitante'=> 'required'
+            'cancha' => 'required',
+            'arbitro' => 'required',
+            'fecha' => 'required',
+            'hora' => 'required',
+            'local'=> 'required|different:visitante',
+            'visitante'=> 'required|different:local'
+            //'fechaFinal' => 'required|after_or_equal:fechaInicial',
         ];
     }
 }

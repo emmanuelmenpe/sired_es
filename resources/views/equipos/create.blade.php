@@ -3,43 +3,31 @@
 @section('content')
 <div class="container">
     <h1>Crear equipo</h1>
-    <form action="/equipos" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="nombre">Nombre de equipo</label>
-            <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre" required>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="nombre">Victorias</label>
-                <input type="number" class="form-control" name="victorias" min="0" placeholder="Ingrese victotias del equipo" required>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="nombre">Empates</label>
-                <input type="number" class="form-control" name="empates" min="0" placeholder="Ingrese empates del equipo" required>
-            </div>
-            
-            <div class="form-group col-md-4">
-                <label for="nombre">Derrotas</label>
-                <input type="number" class="form-control" name="derrotas" min="0" placeholder="Ingrese derrotas del equipo" required>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="id_liga">Liga</label>
-                <select name="id_liga" class="form-control" required>
-                <option selected disabled>-</option>
-                @foreach ($ligas as $liga)
-                    <option value="{{$liga->id}}">{{$liga->liga}}</option>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
                 @endforeach
-                </select>
-            </div>
+            </ul>
+        </div>
+    @endif
+    <form action="/equipos" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="nombre">Nombre de equipo</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre">
+        </div>
 
-            <div class="form-group col-md-4">
-                <label for="id_rama">Rama</label>
-                <select name="id_rama" class="form-control" required>
+        <div class="form-group col-md-3">
+            <label for="logo">logo del equipo</label>
+            <input type="file" class="form-control" name="logo">
+        </div>
+
+            <div class="form-group col-md-3">
+                <label for="rama">Rama</label>
+                <select name="rama" class="form-control">
                 <option selected disabled>-</option>
                 @foreach ($ramas as $rama)
                     <option value="{{$rama->id}}">{{$rama->rama}}</option> 
@@ -47,9 +35,9 @@
                 </select>
             </div>
 
-            <div class="form-group col-md-4">
-                <label for="id_categoria">Categoria</label>
-                <select name="id_categoria" class="form-control" required>
+            <div class="form-group col-md-3">
+                <label for="categoria">Categoria</label>
+                <select name="categoria" class="form-control">
                 <option selected disabled>-</option>
                 @foreach ($categorias as $categoria)
                 <option value="{{$categoria->id}}">{{$categoria->categoria}}</option> 
@@ -59,7 +47,7 @@
 
             </div>
             <button type="submit" class="btn btn-primary">Registrar</button>
-            <button type="reset" class="btn btn-danger">Cancelar</button>
+            <button type="reset" onclick="history.back()" class="btn btn-danger">Cancelar</button>
     </form>
 </div>
 @endsection

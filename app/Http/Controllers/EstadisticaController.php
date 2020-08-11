@@ -19,10 +19,9 @@ class EstadisticaController extends Controller
         $queryR = trim($request->get('filtrarR'));
         //$equipos = Equipo::all(); rama categoria
         $equipos = DB::table('equipos') 
-        ->join('ligas', 'ligas.id', '=', 'equipos.id_liga')
         ->join('ramas', 'ramas.id', '=', 'equipos.id_rama')
         ->join('categorias', 'categorias.id', '=', 'equipos.id_categoria')
-        ->select('equipos.*', 'ligas.liga','ramas.rama', 'categorias.categoria')
+        ->select('equipos.*','ramas.rama', 'categorias.categoria')
         ->where('categorias.categoria','LIKE','%' . $queryC . '%')
         ->where('ramas.rama','LIKE','%' . $queryR . '%')
         //->get(); 

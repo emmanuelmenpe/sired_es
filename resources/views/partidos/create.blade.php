@@ -2,7 +2,16 @@
 
 @section('content')
 <div class="container">
-    <h1>Crear equipo</h1>
+    <h1>Agendar partido</h1>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="/partidos" method="POST">
         @csrf
         
@@ -10,21 +19,41 @@
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="cancha">Cancha</label>
-                    <input type="text" class="form-control" name="cancha" maxlength="255" placeholder="Nombre de cancha" required>
+                    <select name="cancha" class="form-control">
+                        <option selected disabled>-</option>
+                        @foreach ($canchas as $cancha)
+                            @if ($cancha->Cdisponible == 1)
+                                <option value="{{$cancha->id}}">{{$cancha->cancha}}</option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
             </div>
         
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="arbitro">Arbitro</label>
-                    <input type="text" class="form-control" name="arbitro" maxlength="255" placeholder="Nombre del arbitro" required>
+                    <select name="arbitro" class="form-control">
+                        <option selected disabled>-</option>
+                        @foreach ($arbitros as $arbitro)
+                            @if ($arbitro->disponible == 1)
+                                <option value="{{$arbitro->id}}">{{$arbitro->arbitro}}</option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
             </div>
-        
+            
+            @php
+                date_default_timezone_set('America/Mexico_city');
+                $fecha = date ("d/m/Y");
+                $hora = date ("H:m");
+            @endphp
+
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="fecha">fecha</label>
-                    <input class="form-control" type="date" name="fecha" required>
+                <input class="form-control" type="date" name="fecha" min="{{$fecha}}">
                 </div>
             </div>
         </div>
@@ -33,33 +62,54 @@
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <label for="hora">Hora</label>
-                    <input class="form-control" type="time"  name="hora" required>
+                    <input class="form-control" type="time"  name="hora">
                 </div>
             </div>
             
             <div class="form-group col-md-4">
-                <label for="id_local">Equipo local</label>
-                <select name="id_local"  class="form-control" required>
+                <label for="local">Equipo local</label>
+                <select name="local"  class="form-control">
                 <option selected disabled>-</option>
                 @foreach ($equipos as $equipo)
-                    <option value="{{$equipo->id}}">{{$equipo->nombre}}</option>
+                    @php
+                        $i=0;
+                        foreach ($integrantes as $integrante) {
+                            if ($integrante->id_equipo == $equipo->id) {
+                                $i=$i+1;
+                            }
+                        }
+                    @endphp
+                    @if ($i>=7)
+                        <option value="{{$equipo->id}}">{{$equipo->nombre}}</option>
+                    @endif
                 @endforeach
                 </select>
-            </div>
+                
+            </div> 
             
             <div class="form-group col-md-4">
-                <label for="id_visitante">Equipo vistante</label>
-                <select name="id_visitante" class="form-control" required>
+                <label for="visitante">Equipo vistante</label>
+                <select name="visitante" class="form-control">
                 <option selected disabled>-</option>
                 @foreach ($equipos as $equipo)
-                    <option value="{{$equipo->id}}">{{$equipo->nombre}}</option>
+                    @php
+                        $i=0;
+                        foreach ($integrantes as $integrante) {
+                            if ($integrante->id_equipo == $equipo->id) {
+                                $i=$i+1;
+                            }
+                        }
+                    @endphp
+                    @if ($i>=7)
+                        <option value="{{$equipo->id}}">{{$equipo->nombre}}</option>
+                    @endif
                 @endforeach
                 </select>
             </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Crear</button>
-        <button type="reset" class="btn btn-danger">Cancelar</button>
+        <button type="reset" onclick="history.back()" class="btn btn-danger">Cancelar</button>
     </form>
 </div>
 @endsection

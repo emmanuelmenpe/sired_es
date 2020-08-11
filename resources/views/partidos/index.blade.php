@@ -1,19 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container">
+<div class="container">
+
+<div class="container">
     <h1>Partidos programados
-      <a href="partidos/create">
-        <button type="button" class="btn btn-success float-right">Crear partido</button>
-      </a>
+      @can('administrador')
+        <a href="partidos/create">
+          <button type="button" class="btn btn-success float-right">Agendar partido</button>
+        </a>
+      @endcan
     </h1>
-    <h6> 
-      @if ($search)
-        <div class="alert alert-primary" role="alert">
-          Los resultados para tu busqueda '{{$search}}' son: 
-        </div>
-      @endif
-    </h6>
   <table class="table table-striped">
       <thead>  
         <tr> 
@@ -22,14 +19,39 @@
           <th scope="col">Cancha</th>
           <th scope="col">Fecha</th>
           <th scope="col">Hora</th>
-          <th scope="col">Arbitro</th>
-          <th scope="col">Opciones</th>
+          <th scope="col">Árbitro</th>
+          @can('administrador')
+            <th scope="col">Opciones</th>
+          @endcan
+          
         </tr>
       </thead>
       <tbody>
         @foreach ($partidos as $partido)
           <tr> 
-              <td>{{$partido->nombre}}</td>
+              @foreach ($equipos as $equipo)
+                @if ($partido->id_local == $equipo->id)
+                  <td>
+                    @if($equipo->logo != "")
+                      <img src="{{ asset('images/'.$equipo->logo) }}" alt="{{ $equipo->logo }}" height="50px" width="50px">
+                    @endif
+                    {{$equipo->nombre}}</td>
+                  @break
+                @endif
+              @endforeach
+              
+              @foreach ($equipos as $equipo)
+                @if ($partido->id_visitante == $equipo->id)
+                  <td>
+                    @if($equipo->logo != "")
+                      <img src="{{ asset('images/'.$equipo->logo) }}" alt="{{ $equipo->logo }}" height="50px" width="50px">
+                    @endif
+                    {{$equipo->nombre}}</td>
+                  @break
+                @endif
+              @endforeach
+              
+              {{--
               @php
                   $i=1;
                   foreach ($partidoss as $partidoo) {
@@ -41,33 +63,43 @@
                     $i=$i+1;
                   }
               @endphp
-              
+              --}}
               <td>{{$partido->cancha}}</td>
               <td>{{$partido->fecha}}</td>
               <td>{{$partido->hora}}</td>
               <td>{{$partido->arbitro}}</td>
-              <td>
+              @can('administrador')
+                <td> 
                   <form action="{{route('partidos.destroy', $partido->id)}}" method="POST">
-                      <a href="{{route('partidos.edit', $partido->id)}}">
-                          <button type="button" class="btn btn-primary btn-sm">Actalizar</button>
-                      </a>
-                      <a href="{{route('resultados.edit', $partido->id)}}">
-                        <button type="button" class="btn btn-secondary btn-sm">Definir resultados</button>
-                    </a>
+                      @php 
+                        $i=0;
+                        foreach ($resultados as $resultado ) {
+                            if ($resultado->id_partido == $partido->id) {
+                              $i=$i-1;
+                            }
+                        }
+                      @endphp
+                      @if ($i>=0)
+                        <a href="{{route('partidos.edit', $partido->id)}}">
+                          <button type="button" class="btn btn-primary btn-sm">Actualizar{{$partido->id}}</button>
+                        </a> 
+                      @endif
                       @csrf
                       @method('DELETE')
                       <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                      @if ($i>=0)
+                        <a href={{route('defResultado', $partido->id)}}>
+                          <button type='button' class='btn btn-secondary btn-sm'>Capturar resultados</button>
+                        </a>
+                      @endif
                   </form>
-              </td>
+                </td>
+              @endcan
+              
           </tr>
             
         @endforeach
       </tbody>
     </table>
-    <div class="row">
-      <div class="mx-auto">
-        {{ $partidos->links() }}
-      </div>
-    </div>
 </div>
 @endsection

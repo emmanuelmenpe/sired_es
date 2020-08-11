@@ -1,115 +1,107 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container">
-      <div class="jumbotron jumbotron-fluid">
-          <div class="container">
-              <h1 class="display-4">Datos de equipo: {{$equipo->nombre}}
-              </h1>
-              <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Victorias</th>
-                      <th scope="col">Empates</th>
-                      <th scope="col">derrotas</th>
-                      <th scope="col">liga</th>
-                      <th scope="col">Rama</th>
-                      <th scope="col">categoria</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{{$equipo->victorias}}</td>
-                      <td>{{$equipo->empates}}</td>
-                      <td>{{$equipo->derrotas}}</td>
-                      <td>{{$equipo->liga}}</td>
-                      <td>{{$equipo->rama}}</td>
-                      <td>{{$equipo->categoria}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <h1>Integrantes
-                  <!--{{--<a href="/jugadores/create">   OR
-                    <a href="{{route('jugadores.create',$equipo->id)}}">--}}-->
-                  <a href="{{route('jugadores.create', $equipo->id)}}">
-                    <button type="button" class="btn btn-success float-right">Agregar jugador</button>
-                  </a>
-                </h1>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">CURP</th>
-                      <th scope="col">Fotografia</th>
-                      <th scope="col">goles</th>
-                      <th scope="col">Sancionado</th>
-                      <th scope="col">Motivo</th>
-                      <th scope="col">Fecha sancion</th>
-                      <th scope="col">fecha fin</th>
-                      <th scope="col">Opciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ( $jugadores as $jugador)
-                    @if ($equipo->id == $jugador->id_equipo)
-                    @if ($jugador->sancion == 0)
-                      <tr>
-                        <td>{{$jugador->nombre}}</td> 
-                        <td>{{$jugador->curp}}</td> 
-                        <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="no_img" height="50px" width="50px"></td> 
-                        <td>{{$jugador->goles}}</td> 
-                        @if ($jugador->sancion == 0)
-                          <td>NO</td>
-                        @else
-                          <td>SI</td>
-                        @endif
-                        <td>{{$jugador->motivo}}</td>
-                        <td>{{$jugador->fecha_sancion}}</td>
-                        <td>{{$jugador->fecha_fin}}</td>
-                        <td> 
+<div class="container">
+  <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+          <h1 class="display-4">Datos de equipo: {{$equipo->nombre}}
+          </h1>
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Victorias</th>
+                  <th scope="col">Empates</th>
+                  <th scope="col">derrotas</th>
+                  <th scope="col">Rama</th>
+                  <th scope="col">categoria</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{$equipo->victorias}}</td>
+                  <td>{{$equipo->empates}}</td>
+                  <td>{{$equipo->derrotas}}</td>
+                  <td>{{$equipo->rama}}</td>
+                  <td>{{$equipo->categoria}}</td>
+                </tr>
+              </tbody>
+            </table> 
+            <h1>Integrantes
+              <!--{{--<a href="/jugadores/create">   OR
+                <a href="{{route('jugadores.create',$equipo->id)}}">--}}-->
+              @can('administrador')
+                <a href="{{route('jugadorNew', $equipo->id)}}"> 
+                  <button type="button" class="btn btn-success float-right">Agregar jugador</button>
+                </a>
+              @endcan
+              
+            </h1>
+            <div class="container">
+              
+              <div class="d-flex align-content-lg-center flex-wrap">
+                @foreach ( $jugadores as $jugador)
+                @if ($equipo->id == $jugador->id_equipo)
+                {{--@if ($jugador->sancion == 0)--}}
+                  @if ($jugador->manager == 1)
+                    <div class="card" style="width: 19rem; margin: 10px 10px 10px 10px; background-color: #00FF5D;">
+                      <img src="{{asset('images/'.$jugador->fotografia)}}" class="card-img-top" height="200px" alt="no_img">
+                      <div class="card-body">
+                        <h3 class="card-title">{{$jugador->nombre}}</h3>
+                        <p class="card-text">
+                          <h3>Manager</h3> <br>
+                        </p>
+                        @can('administrador')
                           <form action="{{route('jugadores.destroy', $jugador->id)}}" method="POST">
+                              
                               <a href="{{route('jugadores.edit', $jugador->id)}}">
-                                  <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                                <button type="button" class="btn btn-primary btn-sm">Editar</button>
                               </a>
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                           </form>
-                        </td>
-                      </tr>  
-                    @else
-                      <tr style="border: red 5px solid">
-                        <td>{{$jugador->nombre}}</td> 
-                        <td>{{$jugador->curp}}</td> 
-                        <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="no_img" height="50px" width="50px"></td> 
-                        <td>{{$jugador->goles}}</td>
-                        @if ($jugador->sancion == 0)
-                          <td>NO</td>
-                        @else
-                          <td>SI</td>
-                        @endif
-                        <td>{{$jugador->motivo}}</td>
-                        <td>{{$jugador->fecha_sancion}}</td>
-                        <td>{{$jugador->fecha_fin}}</td>
-                        <td> 
-                          <form action="{{route('jugadores.destroy', $jugador->id)}}" method="POST">
-                              <a href="{{route('jugadores.edit', $jugador->id)}}">
-                                  <button type="button" class="btn btn-primary btn-sm">Editar</button>
-                              </a>
-                              @csrf
-                              @method('DELETE')
-                              <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                          </form>
-                        </td>
-                      </tr>
-                    @endif
-                      
-                    @endif
+                        @endcan
+                      </div>
+                    </div>
+                  @endif
+                @endif
+              @endforeach
+
+              @foreach ( $jugadores as $jugador)
+                @if ($equipo->id == $jugador->id_equipo)
+                {{--@if ($jugador->sancion == 0)--}}
+                  @if ($jugador->manager == 0)
+                    <div class="card" style="width: 19rem; margin: 10px 10px 10px 10px;">
+                      <img src="{{asset('images/'.$jugador->fotografia)}}" class="card-img-top" height="200px" alt="no_img">
+                      <div class="card-body">
+                        <h3 class="card-title">{{$jugador->nombre}}</h3>
+                        <p class="card-text">
+                          Goles anotados:{{$jugador->goles}} <br>
+                          Goles por penales:{{$jugador->goles_penal}} <br>
+                          Asistencia a gol:{{$jugador->goles_asistencia}} <br>
+                        </p>
                         
-                    @endforeach
-                  </tbody>
-                </table>
-          </div>
+                          <form action="{{route('jugadores.destroy', $jugador->id)}}" method="POST">
+                              <a href="{{route('jugadores.show', $jugador->id)}}">
+                                <button type="button" class="btn btn-secondary btn-sm">Ver</button>
+                              </a>
+                              @can('administrador')
+                              <a href="{{route('jugadores.edit', $jugador->id)}}">
+                                <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                              </a>
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            @endcan
+                          </form>
+                      </div>
+                    </div>
+                  @endif
+                @endif
+              @endforeach
+              </div>
+            </div>
       </div>
   </div>
+</div>
 @endsection

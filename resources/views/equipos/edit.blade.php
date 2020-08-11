@@ -4,21 +4,31 @@
 <div class="container">
     <h1>Editar equipo: {{ $equipo->nombre }}</h1>
 
-    <form action="{{ route('equipos.update', $equipo->id) }}" method="POST">
+    <form action="{{ route('equipos.update', $equipo->id) }}" method="POST" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
-        <div class="form-group">
-            <label for="nombre">Nombre de equipo</label>
-            <input type="text" class="form-control" name="nombre" value="{{$equipo->nombre}}" placeholder="Ingrese el nombre" required>
-        </div> 
-
         <div class="form-row">
             <div class="form-group col-md-4">
+                <label for="nombre">Nombre de equipo</label>
+                <input type="text" class="form-control" name="nombre" value="{{$equipo->nombre}}" placeholder="Ingrese el nombre" required>
+            </div> 
+
+            <div class="form-group col-md-4">
+                <label for="logo">logo del equipo</label> 
+                <input type="file" name="logo" class="form-control">
+                @if($equipo->logo != "")
+                    <img src="{{ asset('images/'.$equipo->logo) }}" alt="{{ $equipo->logo }}" height="50px" width="50px">
+                    <small>logo actual</small>
+                @endif
+            </div>
+
+            {{--
+            <div class="form-group col-md-3">
                 <label for="nombre">Victorias</label>
                 <input type="number" class="form-control" name="victorias" min="{{$equipo->victorias}}" value="{{$equipo->victorias}}" placeholder="Ingrese victotias del equipo" required>
             </div>
             
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <label for="nombre">Empates</label>
                 <input type="number" class="form-control" name="empates" min="{{$equipo->empates}}" value="{{$equipo->empates}}" placeholder="Ingrese victotias del equipo" required>
             </div>
@@ -28,20 +38,8 @@
                 <input type="number" class="form-control" name="derrotas" min="{{$equipo->derrotas}}" value="{{$equipo->derrotas}}" placeholder="Ingrese victotias del equipo" required>
             </div>
             
-            <div class="form-group col-md-4">
-                <label for="id_liga">Liga</label>
-                <select name="id_liga" class="form-control" required>
-                @foreach ($ligas as $liga)
-                    @if ($liga->liga == $equipo->liga)
-                        <option selected value="{{$liga->id}}">{{$equipo->liga}}</option>
-                    @else
-                    <option value="{{$liga->id}}">{{$liga->liga}}</option>
-                    @endif
-                @endforeach
-                </select>
-            </div>
 
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <label for="id_rama">Rama</label>
                 <select name="id_rama" class="form-control" required>
                 @foreach ($ramas as $rama)
@@ -54,8 +52,8 @@
                 </select>
             </div>
 
-            <div class="form-group col-md-4">
-                <label for="id_categoria">Categoria</label>
+            <div class="form-group col-md-3">
+                <label for="id_categoria">Categoría</label>
                 <select name="id_categoria" class="form-control" required>
                 @foreach ($categorias as $categoria)
                     @if ($categoria->categoria == $equipo->categoria)
@@ -66,10 +64,10 @@
                 @endforeach
                 </select>
             </div>
-
+            --}}
             </div>
             <button type="submit" class="btn btn-primary">Actualizar</button>
-            <button type="reset" class="btn btn-danger">Cancelar</button>   
+            <button type="reset" onclick="history.back()" class="btn btn-danger">Cancelar</button>   
     </form>
 </div>
 @endsection
