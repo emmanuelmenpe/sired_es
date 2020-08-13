@@ -13,11 +13,12 @@ class CreateJugadoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('jugadores', function (Blueprint $table) {
+        Schema::create('jugadors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre', 255);
             $table->string('curp', 18);
             $table->string('fotografia', 255);
+            $table->boolean('manager')->default('0');
             $table->integer('goles')->default('0');
             $table->integer('goles_penal')->default('0');
             $table->integer('goles_asistencia')->default('0');
@@ -32,6 +33,6 @@ class CreateJugadoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jugadores');
+        Schema::dropIfExists('jugadors');
     }
 }

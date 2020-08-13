@@ -2,7 +2,11 @@
 
 @section('content') 
 <div class="container">
-    <h1>Resultados de partidos</h1>
+    <h1>Resultados de partidos
+        @can('administrador')
+        <a href="{{route('resultadospdf')}}" class="btn btn-primary btn-sm float-right" role="button">Imprimir</a>    
+        @endcan
+    </h1>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -87,5 +91,6 @@
             
         </tbody>
     </table>
+    
 </div>
 @endsection 

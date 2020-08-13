@@ -1,14 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
 
 <div class="container">
     <h1>Partidos programados
       @can('administrador')
-        <a href="partidos/create">
-          <button type="button" class="btn btn-success float-right">Agendar partido</button>
-        </a>
+      <a href="{{route('partidospdf')}}" class="btn btn-primary btn-sm float-right" role="button">Imprimir</a>  
       @endcan
     </h1>
   <table class="table table-striped">
@@ -21,7 +18,13 @@
           <th scope="col">Hora</th>
           <th scope="col">Árbitro</th>
           @can('administrador')
-            <th scope="col">Opciones</th>
+            <th scope="col">Opciones
+              @can('administrador')
+                <a href="partidos/create">
+                  <button type="button" class="btn btn-success float-right btn-sm">Agendar partido</button>
+                </a>
+              @endcan
+            </th>
           @endcan
           
         </tr>
@@ -81,7 +84,7 @@
                       @endphp
                       @if ($i>=0)
                         <a href="{{route('partidos.edit', $partido->id)}}">
-                          <button type="button" class="btn btn-primary btn-sm">Actualizar{{$partido->id}}</button>
+                          <button type="button" class="btn btn-primary btn-sm">Actualizar</button>
                         </a> 
                       @endif
                       @csrf
@@ -101,5 +104,6 @@
         @endforeach
       </tbody>
     </table>
+    
 </div>
 @endsection

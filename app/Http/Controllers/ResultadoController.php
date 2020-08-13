@@ -66,8 +66,7 @@ class ResultadoController extends Controller
         $integrantess = DB::table('integrantes')
         ->where('integrantes.id_equipo', '=', $partidoo->id)
         ->get();
-        /*echo "<pre>";
-        print_r($partido);*/
+        
         $partidoID = $id;
         return view('datos.resultadosCreate', ['partido'=>$partido, 'partidoo'=>$partidoo,'partidoID'=>$partidoID, 'jugadores'=>$jugadores,'integrantes'=>$integrantes,'integrantess'=>$integrantess]);
         /*

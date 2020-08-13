@@ -36,17 +36,17 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="goles">Goles anotados</label>
-                <input type="number" class="form-control" name="goles" min="{{$jugador->goles}}" value="{{$jugador->goles}}" placeholder="agregue CURP del jugador" required>
+                <input type="number" class="form-control" name="goles" min="{{$jugador->goles}}" value="{{$jugador->goles}}" placeholder="Goles anotados del jugador" required>
             </div>
 
             <div class="form-group col-md-4">
                 <label for="penal">Goles por penal</label>
-                <input type="number" class="form-control" name="penal" min="{{$jugador->goles_penal}}" value="{{$jugador->goles_penal}}" placeholder="agregue CURP del jugador" required>
+                <input type="number" class="form-control" name="penal" min="{{$jugador->goles_penal}}" value="{{$jugador->goles_penal}}" placeholder="Goles por penal del jugador" required>
             </div>
 
             <div class="form-group col-md-4">
                 <label for="asistencia">Asistencia a gol</label>
-                <input type="number" class="form-control" name="asistencia" min="{{$jugador->goles_asistencia}}" value="{{$jugador->goles_asistencia}}" placeholder="agregue CURP del jugador" required>
+                <input type="number" class="form-control" name="asistencia" min="{{$jugador->goles_asistencia}}" value="{{$jugador->goles_asistencia}}" placeholder="Asistencia a gol del jugador" required>
             </div>
         </div>
         @endif

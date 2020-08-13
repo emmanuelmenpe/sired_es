@@ -74,7 +74,7 @@
                 </tbody>
             </table>
         </div>
-        {{-----------------------------------------------------------------------------
+        
         <div style="width: 50%; float: right; border: red solid 1px;">
             <h3>Goles anotados para "{{$partidoo->nombre}}" por jugador</h3>
             <table class="table table-borderless">

@@ -2,12 +2,10 @@
 
 @section('content')
 <div class="container">
-    <h2>Lista de canchas registrados 
+    <h2>Lista de canchas registradas 
       @can('administrador')
-        <a href="canchas/create"> 
-          <button type="button" class="btn btn-success float-right">Agregar Cancha</button>
-        </a>
-      @endcan  
+        <a href="{{route('canchaspdf')}}" class="btn btn-primary btn-sm float-right" role="button">Imprimir</a>  
+      @endcan
     </h2>
     <table class="table table-striped">
         <thead>
@@ -16,7 +14,13 @@
             <th scope="col">Dirección</th>
             <th scope="col">Disponible</th>
             @can('administrador')
-              <th scope="col">Opciones</th>
+              <th scope="col">Opciones
+                @can('administrador')
+                  <a href="canchas/create"> 
+                    <button type="button" class="btn btn-success float-right btn-sm">Agregar Cancha</button>
+                  </a>
+                @endcan 
+              </th>
             @endcan 
           </tr>
         </thead>
@@ -47,5 +51,6 @@
           @endforeach
         </tbody>
     </table>
+    
 </div>
 @endsection

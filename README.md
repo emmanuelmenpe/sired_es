@@ -1,71 +1,58 @@
 
-## About Laravel
+# Sistema de Registro Deportivo (SIRED)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplicación web creada con **Laravel 7** que permite el CRUD de equipos deportivos, jugadores, partidos, canchas y árbitros, además de arrojar los resultados de los partidos, anotaciones del jugador y datos del equipo.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Clonar proyecto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Para obtener una copia funcional en maquina local es necesario cumplir con los siguientes requerimientos:
 
-## Learning Laravel
+- Sistema Gestor de Bases de Datos SQL (SGBD) inatalado con versión de PHP mínimo a 7.2.5.
+- Composer instalado.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Instalación de SGBD
 
-## Laravel Sponsors
+Puede instalar el SGBD que prefiera y seguir los métodos de instalación de cada uno:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- [XAMPP](https://www.apachefriends.org/es/index.html).
+- [PostgreSQL](https://www.postgresql.org/download/).
+- [MySQL](https://www.mysql.com/downloads/).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+### Instalación de Composer
 
-## Contributing
+Ingrese a la página oficial de [composer](https://getcomposer.org/download/) y seguir las instrucciones de instalación de composer, Posteriormente agregarlo a las variables de entorno.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Instalación de Laravel
 
-## Code of Conduct
+Descargar el instalador de Laravel mediante composer usando el comando:
+```
+composer global require laravel/installer
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Crear la base de datos
 
-## Security Vulnerabilities
+Para la creación de la base de datos debe: 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Ejecutar los modulos de apache y mysql mediante el SGBD.
+- En el administrador de mysql (phpMyAdmin) importar la base de datos ubicada en /databases/BDsired.sql ubicado dentro del proyecto o crear manualmente la BD **'sired'** y realizar las importaciones desde el símbolo del sistema con el comando: 
+```
+php artisan migrate.
+```
 
-## License
+# Ejacutar proyecto
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Para ejecutar el proyecto debe:
+
+- Ingresar a la ruta del proyecto desde el símbolo del sistema y ejecutar el comando: 
+```
+php artisan serve.
+```
+- Copiar la ruta que le proporcionará el símbolo del sistema al ejecutar el comando anterior y pegarlo a una ventana de un navegador web.
+
+## constroido con 
+
+- [Laravel](https://laravel.com) como framework de desarrollo
+- [Composer](https://getcomposer.org) como administrador de dependencias para PHP
+- [Xampp](https://www.apachefriends.org/es/index.html) como SGBD.
+

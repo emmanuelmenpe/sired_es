@@ -13,10 +13,10 @@ class CreateHistorialTable extends Migration
      */
     public function up()
     {
-        Schema::create('historiales', function (Blueprint $table) {
+        Schema::create('historials', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('id_jugador')->references('id')->on('jugadores');
-            $table->foreignId('id_sancion')->references('id')->on('sanciones');
+            $table->foreignId('id_jugador')->references('id')->on('jugadors');
+            $table->foreignId('id_sancion')->references('id')->on('sancions');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateHistorialTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('historiales');
+        Schema::dropIfExists('historials');
     }
 }

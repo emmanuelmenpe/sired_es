@@ -13,7 +13,7 @@ class CreateSancionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sanciones', function (Blueprint $table) {
+        Schema::create('sancions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('motivo', 255);
             $table->date('fecha_sancion');
@@ -29,6 +29,6 @@ class CreateSancionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sanciones');
+        Schema::dropIfExists('sancions');
     }
 }

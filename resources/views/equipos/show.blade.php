@@ -48,7 +48,7 @@
                       <div class="card-body">
                         <h3 class="card-title">{{$jugador->nombre}}</h3>
                         <p class="card-text">
-                          <h3>Manager</h3> <br>
+                          <h1>Manager</h1> <br>
                         </p>
                         @can('administrador')
                           <form action="{{route('jugadores.destroy', $jugador->id)}}" method="POST">

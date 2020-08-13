@@ -14,6 +14,14 @@ use App\Arbitros;
 
 class PartidoController extends Controller 
 {
+    public function mostrarVisitante($id_local)
+    {
+        $equiposV = DB::table('equipos')
+        ->where('id','<>',  $id_local)
+        ->get();
+        return $equiposV;
+    }
+
     public function index(Request $request)
     {
         $equipos = Equipo::all();

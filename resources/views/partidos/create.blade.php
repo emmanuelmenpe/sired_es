@@ -68,7 +68,7 @@
             
             <div class="form-group col-md-4">
                 <label for="local">Equipo local</label>
-                <select name="local"  class="form-control">
+                <select name="local"  class="form-control" id="equipoL">
                 <option selected disabled>-</option>
                 @foreach ($equipos as $equipo)
                     @php
@@ -89,7 +89,11 @@
             
             <div class="form-group col-md-4">
                 <label for="visitante">Equipo vistante</label>
-                <select name="visitante" class="form-control">
+                <select name="visitante" class="form-control" id="equipoV">
+                    <option selected disabled>-</option>
+                </select>
+                {{--
+                <select name="visitante" class="form-control" id="equipoV">
                 <option selected disabled>-</option>
                 @foreach ($equipos as $equipo)
                     @php
@@ -105,6 +109,7 @@
                     @endif
                 @endforeach
                 </select>
+                --}}
             </div>
         </div>
 
@@ -113,3 +118,7 @@
     </form>
 </div>
 @endsection
+{{--
+@section('scripts')
+    <script src="{{ asset('js/partido.js') }}" defer></script>
+@endsection--}}

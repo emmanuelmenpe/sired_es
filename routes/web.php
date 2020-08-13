@@ -5,6 +5,16 @@ use Illuminate\Support\Facades\Route;
  
 Auth::routes();
 
+Route::get('/equipo/{id}/local', 'PartidoController@mostrarVisitante');
+
+//descargar pdf de algunas rutas
+Route::get('/pdf','PDFController@PDF')->name('download');
+Route::get('/pdf_partidos','PDFController@PDFPartidos')->name('partidospdf');
+Route::get('/pdf_resultados','PDFController@PDFResultados')->name('resultadospdf');
+Route::get('/pdf_anotaciones','PDFController@PDFAnotaciones')->name('anotacionespdf');
+Route::get('/pdf_canchas','PDFController@PDFCanchas')->name('canchaspdf');
+Route::get('/pdf_arbitros','PDFController@PDFPArbitros')->name('arbitrospdf');
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('usuario','UserController');
 //Route::get('/resultados', 'ResultadoController@index');

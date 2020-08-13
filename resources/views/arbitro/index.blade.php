@@ -4,10 +4,8 @@
 <div class="container">
     <h2>Lista de arbitros registrados 
       @can('administrador')
-        <a href="arbitros/create"> 
-          <button type="button" class="btn btn-success float-right">Agregar arbitro</button>
-        </a>
-      @endcan  
+      <a href="{{route('arbitrospdf')}}" class="btn btn-primary btn-sm float-right" role="button">Imprimir</a>
+      @endcan
     </h2>
     <table class="table table-striped">
         <thead>
@@ -15,7 +13,13 @@
             <th scope="col">Nombre</th>
             <th scope="col">Disponible</th>
             @can('administrador')
-              <th scope="col">Opciones</th>
+              <th scope="col">Opciones
+                @can('administrador')
+                  <a href="arbitros/create"> 
+                    <button type="button" class="btn btn-success float-right btn-sm">Agregar arbitro</button>
+                  </a>
+                @endcan 
+              </th>
             @endcan 
           </tr>
         </thead>
@@ -51,5 +55,6 @@
           @endforeach
         </tbody>
       </table>
+      
   </div>
 @endsection

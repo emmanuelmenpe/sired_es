@@ -29,7 +29,7 @@ class PartidoRequest extends FormRequest
             'fecha' => 'required',
             'hora' => 'required',
             'local'=> 'required|different:visitante',
-            'visitante'=> 'required|different:local'
+            'visitante'=> 'required'
             //'fechaFinal' => 'required|after_or_equal:fechaInicial',
         ];
     }

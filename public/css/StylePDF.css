@@ -1,0 +1,32 @@
+@page{
+    margin: 0cm 0cm;
+    font-size: 1em;
+}
+
+body{
+    margin: 3cm 2cm 2cm;
+}
+
+header{
+    position: fixed;
+    top: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 0cm;
+    background-color: aliceblue;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+}
+
+footer{
+    position: fixed;
+    top: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 0cm;
+    background-color: aliceblue;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+}

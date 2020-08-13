@@ -1,12 +1,14 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container"> 
-    <h1>Tabla de Goleo
-        @can('administrador')
-        <a href="{{route('anotacionespdf')}}" class="btn btn-primary btn-sm float-right" role="button">Imprimir</a>    
-        @endcan
-    </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Anotaciones</title>
+</head>
+<body>
+    <h1>Tabla de Goleo</h1>
     <table class="table table-striped" id="t2">
         <thead>
         <tr>  
@@ -22,8 +24,8 @@
                 @foreach ($equipos as $equipo)
                     @if ($equipo->id == $jugador->id_equipo)
                         <tr>
-                            <td><img src="{{asset('images/'.$equipo->logo)}}" alt="no_img" height="50px" width="50px"> | {{$equipo->nombre}}</td>
-                            <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="no_img" height="50px" width="50px"> | {{$jugador->nombre}}</td>
+                            <td>{{$equipo->nombre}}</td>
+                            <td>{{$jugador->nombre}}</td>
                             <td>{{$jugador->goles}}</td>
                             <td>{{$jugador->goles_penal}}</td>
                             <td>{{$jugador->goles_asistencia}}</td>
@@ -31,10 +33,8 @@
                         @break
                     @endif
                 @endforeach
-            @endforeach
-        
+            @endforeach 
         </tbody>
     </table>
-    
-</div>
-@endsection
+</body>
+</html>

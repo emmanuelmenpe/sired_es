@@ -90,7 +90,7 @@
           @endforeach
         </tbody>
     </table>
-     
+    <a href="{{route('download')}}" class="btn btn-primary btn-sm" role="button">Imprimir</a>
     {{-------------------------------------------------------------
     <br>
     <h1>Tabla de Goleo</h1>
