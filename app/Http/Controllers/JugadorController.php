@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\JugadorRequest;
 use Illuminate\Support\Facades\DB;
 use App\Equipo;
+use App\Posiciones;
 use App\Jugador;
 use App\Integrantes;
 
@@ -19,12 +20,8 @@ class JugadorController extends Controller
     
     public function create(Request $request, $id)
     {
-        $equipo = Equipo::findOrFail($id);
-        $jugadores = DB::table('jugadors')
-        ->join('integrantes', 'integrantes.id_jugador', 'jugadors.id')
-        ->select('integrantes.*', 'jugadors.*');
-        $jugadores = $jugadores->get(); 
-        return view('jugadores.create',['id'=>$id, 'equipo'=>$equipo, 'jugadores'=>$jugadores]);
+        $posiciones = Posiciones::all();
+        return view('jugadores.create',['id'=>$id, 'posiciones'=>$posiciones]);
     }
     
     public function store(JugadorRequest $request)
@@ -40,11 +37,13 @@ class JugadorController extends Controller
             $file->move(public_path() . '/images', $file->getClientOriginalName());
             $jugador->fotografia = $file->getClientOriginalName();
         }
-        
+
+        $jugador->id_posicion = $request->posicion;
+        /*
         if (isset($_POST["manager"])) {
             $jugador->manager = 1;
          }
-
+         */
         $jugador->save();
         
         $integrante->id_equipo = request('id_equipo'); 

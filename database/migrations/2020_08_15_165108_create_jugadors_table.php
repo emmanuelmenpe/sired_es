@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJugadoresTable extends Migration
+class CreateJugadorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,6 +18,7 @@ class CreateJugadoresTable extends Migration
             $table->string('nombre', 255);
             $table->string('curp', 18);
             $table->string('fotografia', 255);
+            $table->foreignId('id_posicion')->references('id')->on('posiciones');
             $table->boolean('manager')->default('0');
             $table->integer('goles')->default('0');
             $table->integer('goles_penal')->default('0');

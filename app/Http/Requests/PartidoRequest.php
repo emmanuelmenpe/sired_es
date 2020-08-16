@@ -26,7 +26,7 @@ class PartidoRequest extends FormRequest
         return [ 
             'cancha' => 'required',
             'arbitro' => 'required',
-            'fecha' => 'required',
+            'fecha' => 'required|after:start_date',
             'hora' => 'required',
             'local'=> 'required|different:visitante',
             'visitante'=> 'required'

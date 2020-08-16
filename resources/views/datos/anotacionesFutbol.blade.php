@@ -22,8 +22,8 @@
                 @foreach ($equipos as $equipo)
                     @if ($equipo->id == $jugador->id_equipo)
                         <tr>
-                            <td><img src="{{asset('images/'.$equipo->logo)}}" alt="no_img" height="50px" width="50px"> | {{$equipo->nombre}}</td>
-                            <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="no_img" height="50px" width="50px"> | {{$jugador->nombre}}</td>
+                            <th scope="row"><img src="{{asset('images/'.$equipo->logo)}}" alt="no_img" height="50px" width="50px"> | {{$equipo->nombre}}</th>
+                            <th scope="row"><img src="{{asset('images/'.$jugador->fotografia)}}" alt="no_img" height="50px" width="50px"> | {{$jugador->nombre}}</th>
                             <td>{{$jugador->goles}}</td>
                             <td>{{$jugador->goles_penal}}</td>
                             <td>{{$jugador->goles_asistencia}}</td>

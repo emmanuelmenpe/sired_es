@@ -16,7 +16,15 @@ use Illuminate\Support\Facades\DB;
 
 class PDFController extends Controller
 {
-    public function PDF(){
+    public function PDFEquipos(){
+        $equipos = DB::table('equipos')
+            ->orderBy('puntos', 'desc') 
+            ->join('ramas', 'ramas.id', '=', 'equipos.id_rama')
+            ->join('categorias', 'categorias.id', '=', 'equipos.id_categoria')
+            ->select('equipos.*','ramas.rama', 'categorias.categoria')
+            ->get();
+            $pdf = \PDF::loadView('pdf.equipos', ['equipos'=>$equipos]);
+            return $pdf->stream('equipos.pdf');
         /* vertical
         $ramas = Rama::all();
         $categorias = Categoria::all();
@@ -30,6 +38,7 @@ class PDFController extends Controller
         return $pdf->download('prueva.pdf');
         //return $pdf->stream('prueba.pdf');
         */
+        /*
         $ramas = Rama::all();
         $categorias = Categoria::all();
         $equipos = DB::table('equipos')
@@ -41,6 +50,7 @@ class PDFController extends Controller
         $pdf = \PDF::loadView('PDF.prueba',['equipos'=>$equipos,'ramas'=>$ramas, 'categorias'=>$categorias]);
         //return $pdf->download('prueva.pdf');
         return $pdf->setpaper('a4','landscape')->stream('prueba.pdf');
+        */
     }
 
     public function PDFPartidos(){

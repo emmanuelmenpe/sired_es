@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h1>Agregar arbitro</h1>
+    <h1>Agregar árbitro</h1>
     <form action="/arbitros" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" name="nombre" placeholder="Nombre de arbitro" required>
+                <input type="text" class="form-control" name="nombre" placeholder="Nombre de árbitro" required>
             </div>
         
             <div class="form-group col-md-4">

@@ -82,7 +82,8 @@ class EquipoController extends Controller
         $integrantes = Integrantes::all(); */
         $jugadores = DB::table('jugadors')
         ->join('integrantes', 'integrantes.id_jugador', 'jugadors.id')
-        ->select('integrantes.*', 'jugadors.*');
+        ->join('posiciones', 'posiciones.id', 'jugadors.id_posicion')
+        ->select('integrantes.*', 'jugadors.*', 'posiciones.posicion');
         $jugadores = $jugadores->get(); 
         return view('equipos.show',['equipo' =>  $equipo, 'jugadores'=> $jugadores]);
         /*return view('equipos.show',['equipo'=> Equipo::findOrFail($id), 
@@ -94,7 +95,7 @@ class EquipoController extends Controller
     
     public function edit($id)
     {
-        //$equipo = Equipo::findOrFail($id);
+        //$equipo = Equipo::findOrFail($id); 
         $ramas = Rama::all();
         $categorias = Categoria::all();
         $equipo = DB::table('equipos') 

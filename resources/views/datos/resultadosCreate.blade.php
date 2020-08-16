@@ -108,7 +108,7 @@
     </div>
     <br>
     --}}
-    <button type="submit" class="btn btn-primary">Registrar</button>
+    <button type="submit" class="btn btn-primary">Capturar</button>
     <button type="reset" onclick="history.back()" class="btn btn-danger">Cancelar</button>
     
     </form>

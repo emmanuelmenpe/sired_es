@@ -55,31 +55,31 @@
             
             @foreach ($partidos as $partido)
                 <tr>
-                <td>
+                <th scope="row">
                     @if($partido->logo != "")
                       <img src="{{ asset('images/'.$partido->logo) }}" alt="{{ $partido->logo }}" height="50px" width="50px">
                     @endif
                     {{$partido->nombre}}
-                </td>
+                </th>
                 @php 
                     $i=1;
                     foreach ($partidoss as $partidoo) {
                         if ($loop->iteration == $i) {
-                            echo "<td>".
+                            echo "<th scope=".'row'.">".
                                 "<img src=".asset('images/'.$partidoo->logo)." alt=".$partido->logo." height='50px' width='50px'>". 
                                 $partidoo->nombre.
-                                "</td>";
+                                "</th>";
                         }
                         $i=$i+1;
                     }
                     if ($partido->id_ganador == $partido->id_local) {
                         //echo "<td>".$partido->nombre."</td>";
-                        echo "<td>local</td>";
+                        echo "<th scope=".'row'.">local</th>";
                     } elseif ($partido->id_perdedor == $partido->id_local) {
                         //echo "<td>".$partidoo->nombre."</td>";
-                        echo "<td>visitante</td>";
+                        echo "<th scope=".'row'.">visitante</th>";
                     } else {
-                        echo "<td>empate</td>"; 
+                        echo "<th scope=".'row'.">empate</th>"; 
                     }
                     
                 @endphp

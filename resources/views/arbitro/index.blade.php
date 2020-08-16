@@ -7,7 +7,7 @@
       <a href="{{route('arbitrospdf')}}" class="btn btn-primary btn-sm float-right" role="button">Imprimir</a>
       @endcan
     </h2>
-    <table class="table table-striped">
+    <table class="table table-hover">
         <thead>
           <tr>
             <th scope="col">Nombre</th>
@@ -16,7 +16,7 @@
               <th scope="col">Opciones
                 @can('administrador')
                   <a href="arbitros/create"> 
-                    <button type="button" class="btn btn-success float-right btn-sm">Agregar arbitro</button>
+                    <button type="button" class="btn btn-success float-right btn-sm">Agregar árbitro</button>
                   </a>
                 @endcan 
               </th>
@@ -26,12 +26,12 @@
         <tbody>
           @foreach ($arbitros as $arbitro)
             <tr>
-                <td>
+                <th scope="row">
                   @if($arbitro->foto != "")
                       <img src="{{ asset('images/'.$arbitro->foto) }}" alt="{{ $arbitro->foto }}" height="50px" width="50px">
                   @endif
                   {{$arbitro->arbitro}}
-                </td>
+                </th>
                 @if ($arbitro->disponible == 1)
                     <td>Sí</td>
                 @else

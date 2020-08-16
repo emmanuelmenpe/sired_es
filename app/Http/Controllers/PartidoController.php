@@ -33,7 +33,7 @@ class PartidoController extends Controller
         ->join('canchas', 'canchas.id', '=', 'partidos.id_cancha')
         ->join('arbitros', 'arbitros.id', '=', 'partidos.id_arbitro')
         //->join('equipos', 'equipos.id', '=', 'partidos.id_visitante')
-        ->select('partidos.*','canchas.cancha', 'arbitros.arbitro')
+        ->select('partidos.*','canchas.cancha', 'arbitros.arbitro', 'canchas.direccion')
         ->get();
 
         

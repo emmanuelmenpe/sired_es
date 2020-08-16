@@ -12,8 +12,8 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label for="direccion">dirección</label>
-                <input type="text" class="form-control" name="direccion" placeholder="dirección de cancha" required>
+                <label for="direccion">Dirección</label>
+                <input type="text" class="form-control" name="direccion" placeholder="Dirección de cancha" required>
             </div>
         
             <div class="form-group col-md-4">

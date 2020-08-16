@@ -32,7 +32,7 @@
         
             <div class="form-group col-md-4">
                 <div class="form-group">
-                    <label for="arbitro">Arbitro</label>
+                    <label for="arbitro">Árbitro</label>
                     <select name="arbitro" class="form-control">
                         <option selected disabled>-</option>
                         @foreach ($arbitros as $arbitro)
@@ -113,7 +113,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <button type="submit" class="btn btn-primary">Agendar</button>
         <button type="reset" onclick="history.back()" class="btn btn-danger">Cancelar</button>
     </form>
 </div>

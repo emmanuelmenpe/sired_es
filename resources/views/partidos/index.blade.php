@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container-fluid">
     <h1>Partidos programados
       @can('administrador')
       <a href="{{route('partidospdf')}}" class="btn btn-primary btn-sm float-right" role="button">Imprimir</a>  
@@ -14,6 +14,7 @@
           <th scope="col">Local</th>
           <th scope="col">Visitante</th>
           <th scope="col">Cancha</th>
+          <th scope="col">Dirección</th>
           <th scope="col">Fecha</th>
           <th scope="col">Hora</th>
           <th scope="col">Árbitro</th>
@@ -34,22 +35,22 @@
           <tr> 
               @foreach ($equipos as $equipo)
                 @if ($partido->id_local == $equipo->id)
-                  <td>
+                  <th scope="row">
                     @if($equipo->logo != "")
                       <img src="{{ asset('images/'.$equipo->logo) }}" alt="{{ $equipo->logo }}" height="50px" width="50px">
                     @endif
-                    {{$equipo->nombre}}</td>
+                    {{$equipo->nombre}}</th>
                   @break
                 @endif
               @endforeach
               
               @foreach ($equipos as $equipo)
                 @if ($partido->id_visitante == $equipo->id)
-                  <td>
+                  <th scope="row">
                     @if($equipo->logo != "")
                       <img src="{{ asset('images/'.$equipo->logo) }}" alt="{{ $equipo->logo }}" height="50px" width="50px">
                     @endif
-                    {{$equipo->nombre}}</td>
+                    {{$equipo->nombre}}</th>
                   @break
                 @endif
               @endforeach
@@ -68,6 +69,7 @@
               @endphp
               --}}
               <td>{{$partido->cancha}}</td>
+              <td>{{$partido->direccion}}</td>
               <td>{{$partido->fecha}}</td>
               <td>{{$partido->hora}}</td>
               <td>{{$partido->arbitro}}</td>

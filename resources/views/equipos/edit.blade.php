@@ -51,7 +51,7 @@
                 @endforeach
                 </select>
             </div>
-
+            {{--
             <div class="form-group col-md-3">
                 <label for="id_categoria">Categoría</label>
                 <select name="id_categoria" class="form-control" required>

@@ -27,7 +27,7 @@
         <tbody>
           @foreach ($canchas as $cancha)
             <tr>
-                <td>{{$cancha->cancha}}</td>
+                <th scope="row">{{$cancha->cancha}}</th>
                 <td>{{$cancha->direccion}}</td>
                 @if ($cancha->Cdisponible == 1)
                     <td>Sí</td>

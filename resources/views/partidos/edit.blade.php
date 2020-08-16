@@ -29,7 +29,7 @@
             
             <div class="form-group col-md-4">
                 <div class="form-group">
-                    <label for="arbitro">Arbitro</label>
+                    <label for="arbitro">Árbitro</label>
                     <select name="arbitro" class="form-control" required>
                         @foreach ($arbitros as $arbitro)
                         @if ($arbitro->id == $partido->id_arbitro)

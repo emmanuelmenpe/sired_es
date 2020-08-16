@@ -10,9 +10,14 @@
     <title>{{ config('app.name', 'SIRED') }}</title>
     {{--<title>{{ config('app.name', 'Laravel') }}</title>--}}
 
+    
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/partido.js') }}" defer></script>
+    <script src="{{ asset('js/active.js') }}" defer></script>
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,8 +29,7 @@
     
 </head> 
 <body>
-<body background ="{{asset('images/'."fondo.jpg")}}" class="img-fluid" alt="Responsive image">
-    <div id="app">
+    <div class="navbaractive">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="#">SIRED</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,19 +38,19 @@
           
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="{{ Request::is('/') ? 'active' : '' }}">
                   <a class="nav-link" href="{{ url('/') }}">Inicio</a>
                 </li>
  
-                <li class="nav-item">
+                <li class="{{ Request::is('equipos') ? 'active' : '' }}">
                   <a class="nav-link" href="{{ url('/equipos') }}">Equipos</a>
                 </li>
 
-                <li class="nav-item">
+                <li class="{{ Request::is('partidos') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/partidos') }}">Partidos</a>
                 </li>
 
-                <li class="nav-item">
+                <li class="{{ Request::is('resultados') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/resultados') }}">Resultados</a>
                 </li>
                 {{--
@@ -58,19 +62,18 @@
                     <a class="nav-link" href="{{ url('/posiciones') }}">Posiciones</a>
                 </li>
                 --}}
-                <li class="nav-item">
+                <li class="{{ Request::is('anotaciones/futbol') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/anotaciones/futbol') }}">Anotaciones</a>
                 </li>
                 @can('administrador')
-                    <li class="nav-item">
+                    <li class="{{ Request::is('canchas') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('/canchas') }}">Canchas</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/arbitros') }}">Arbitros</a>
+                    <li class="{{ Request::is('arbitros') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/arbitros') }}">Árbitros</a>
                     </li>
                 @endcan
-                <i class="fas fa-bars"></i>
               </ul>
               {{--
               <form class="form-inline my-2 my-lg-0">

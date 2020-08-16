@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="container">
-    <h1>Editar arbitro: {{ $arbitro->arbitro }}</h1>
+    <h1>Editar árbitro: {{ $arbitro->arbitro }}</h1>
 
     <form action="{{ route('arbitros.update', $arbitro->id) }}" method="POST" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="nombre">Nombre de arbitro</label>
+                <label for="nombre">Nombre de árbitro</label>
                 <input type="text" class="form-control" name="nombre" value="{{$arbitro->arbitro}}" placeholder="Ingrese el nombre" required>
             </div> 
 
@@ -27,7 +27,7 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label for="foto">Fotografía del arbitro</label> 
+                <label for="foto">Fotografía del árbitro</label> 
                 <input type="file" name="foto" class="form-control">
                 @if($arbitro->foto != "")
                     <img src="{{ asset('images/'.$arbitro->foto) }}" alt="{{ $arbitro->foto }}" height="50px" width="50px">

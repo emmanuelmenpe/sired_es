@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <h1>Tabla de posiciones
         <div class="float-right">
             <form class="form-inline my-2 my-lg-0">
@@ -48,8 +48,8 @@
                     $JJ = $equipo->victorias + $equipo->empates + $equipo->derrotas;
                     $DIF = $equipo->goles_favor - $equipo->goles_contra;
                 @endphp
-                <td>{{$loop->iteration}}</td>
-                <td><img src="{{asset('images/'.$equipo->logo)}}" alt="no_img" height="60px" width="60px"> | {{$equipo->nombre}}</td>
+                <th scope="row">{{$loop->iteration}}</th>
+                <th scope="row"><img src="{{asset('images/'.$equipo->logo)}}" alt="no_img" height="60px" width="60px"> | {{$equipo->nombre}}</th>
                 <td>{{$JJ}}</td> 
                 <td>{{$equipo->victorias}}</td>
                 <td>{{$equipo->empates}}</td>
@@ -90,7 +90,7 @@
           @endforeach
         </tbody>
     </table>
-    <a href="{{route('download')}}" class="btn btn-primary btn-sm" role="button">Imprimir</a>
+    
     {{-------------------------------------------------------------
     <br>
     <h1>Tabla de Goleo</h1>

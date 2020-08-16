@@ -26,7 +26,8 @@ class JugadorRequest extends FormRequest
         return [
             'nombre' => 'required|max:255',
             'curp' => 'required',
-            'fotografia' => 'required|mimes:jpeg,bmp,png'
+            'fotografia' => 'required|mimes:jpeg,bmp,png',
+            'posicion' => 'required'
         ];
     }
 }

@@ -2,12 +2,13 @@
 
 @section('content') 
 <div class="container">
-  <h2>Lista de equipos registrados 
+  <h2>Lista de equipos registrados
     @can('administrador')
-      <a href="equipos/create"> 
-        <button type="button" class="btn btn-success float-right">Agregar equipo</button>
-      </a>
-    @endcan  
+      <div class="float-right">
+        <a href="{{route('equipospdf')}}" class="btn btn-primary btn-sm" role="button">Imprimir</a>
+      </div>
+    @endcan 
+    
   </h2>
   <h6> 
     @if ($search)
@@ -22,7 +23,13 @@
           <th scope="col">Nombre</th>
           <th scope="col">Rama</th>
           <th scope="col">Categoría</th>
-            <th scope="col">Opciones</th>
+            <th scope="col">Opciones
+              @can('administrador')
+                <a href="equipos/create"> 
+                  <button type="button" class="btn btn-success float-right btn-sm">Agregar equipo</button>
+                </a>
+              @endcan
+            </th>
           
         </tr>
       </thead>
@@ -33,12 +40,12 @@
                   $JJ = $equipo->victorias + $equipo->empates + $equipo->derrotas;
                   $DIF = $equipo->goles_favor - $equipo->goles_contra;
               @endphp
-              <td>
+              <th scope="row">
                 @if($equipo->logo != "")
                     <img src="{{ asset('images/'.$equipo->logo) }}" alt="{{ $equipo->logo }}" height="50px" width="50px">
                 @endif
-                {{$equipo->nombre}}
-              </td>
+                {{$equipo->nombre}} 
+              </th>
               <td>{{$equipo->rama}}</td>
               <td>{{$equipo->categoria}}</td>
               
@@ -56,10 +63,8 @@
                       <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                     @endcan
                   </form>
-
+                  
                 </td>
-              
-              
           </tr>
 
         @endforeach
