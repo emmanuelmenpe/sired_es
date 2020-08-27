@@ -12,6 +12,11 @@
             </div>
         
             <div class="form-group col-md-4">
+                <label for="foto">Fotografía</label>
+                <input type="file" name="foto" class="form-control" required> 
+            </div>
+            
+            <div class="form-group col-md-4">
                 <label for="disponible">Disponible</label>
                 <select name="disponible"  class="form-control" required>
                     <option value="" selected disabled>-</option>
@@ -19,13 +24,8 @@
                     <option value="0">No</option>
                 </select>
             </div>
-        
-            <div class="form-group col-md-4">
-                <label for="foto">Fotografía</label>
-                <input type="file" name="foto" class="form-control" required> 
-            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Reguistrar</button>
+        <button type="submit" class="btn btn-primary">Agregar</button>
         <button type="reset" onclick="history.back()" class="btn btn-danger">Cancelar</button>
       </form>
 </div>

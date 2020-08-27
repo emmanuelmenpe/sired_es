@@ -10,12 +10,6 @@ use App\Historial;
 
 class SancionesController extends Controller
 {
-    
-    public function index()
-    {
-        //
-    }
-    
     public function create(Request $request, $id)
     {
         return view('jugadores.sancion',['id'=>$id]);
@@ -41,25 +35,5 @@ class SancionesController extends Controller
         $historial->save();
 
         return redirect('jugadores/'.$jugador->id);
-    }
-    
-    public function show($id)
-    {
-        //
-    }
-    
-    public function edit($id)
-    {
-        //
-    }
-    
-    public function update(Request $request, $id)
-    {
-        //
-    }
-    
-    public function destroy($id)
-    {
-        //
     }
 }

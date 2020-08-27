@@ -25,7 +25,7 @@
                 </select>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Reguistrar</button>
+        <button type="submit" class="btn btn-primary">Agregar</button>
         <button type="reset" onclick="history.back()" class="btn btn-danger">Cancelar</button>
     </form>
 </div>

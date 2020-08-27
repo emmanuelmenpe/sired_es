@@ -19,40 +19,6 @@
         </tr>
         </thead>
         <tbody>
-            {{--
-            @foreach ($resultados as $resultado)
-                <tr>
-                    @foreach ($partidos as $partido)
-                        @foreach ($equipos as $equipo)
-                            @if ($partido->id_local == $equipo->id)
-                                <td>{{$equipo->nombre}}</td>
-                                @break
-                            @endif
-                        @endforeach 
-                        @break 
-                    @endforeach
-
-                    @foreach ($partidos as $partido)
-                        @foreach ($equipos as $equipo)
-                            @if ($partido->id_visitante == $equipo->id)
-                                <td>{{$equipo->nombre}}</td>
-                                @break
-                            @endif
-                        @endforeach  
-                        @break
-                    @endforeach
-
-                    @if ($resultado->id_ganador == $partido->id_local)
-                        <td>Local</td>
-                    @elseif($resultado->id_ganador == $partido->id_visitante)
-                        <td>Visitante</td>
-                    @else
-                        <td>Empate</td>
-                    @endif
-                </tr>
-            @endforeach 
-            --}}
-            
             @foreach ($partidos as $partido)
                 <tr>
                 <th scope="row">
@@ -73,10 +39,8 @@
                         $i=$i+1;
                     }
                     if ($partido->id_ganador == $partido->id_local) {
-                        //echo "<td>".$partido->nombre."</td>";
                         echo "<th scope=".'row'.">local</th>";
                     } elseif ($partido->id_perdedor == $partido->id_local) {
-                        //echo "<td>".$partidoo->nombre."</td>";
                         echo "<th scope=".'row'.">visitante</th>";
                     } else {
                         echo "<th scope=".'row'.">empate</th>"; 

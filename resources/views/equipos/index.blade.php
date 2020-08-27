@@ -8,15 +8,7 @@
         <a href="{{route('equipospdf')}}" class="btn btn-primary btn-sm" role="button">Imprimir</a>
       </div>
     @endcan 
-    
   </h2>
-  <h6> 
-    @if ($search)
-      <div class="alert alert-primary" role="alert">
-        Los resultados para tu busqueda '{{$search}}' son: 
-      </div>
-    @endif
-  </h6>  
   <table class="table table-striped">
       <thead>
         <tr>
@@ -50,7 +42,7 @@
               <td>{{$equipo->categoria}}</td>
               
                 <td> 
-                  <form action="{{route('equipos.destroy', $equipo->id)}}" method="POST">
+                  <form action="{{route('equipos.destroy', $equipo->id)}}" method="POST" id="formulario">
                     <a href="{{route('equipos.show', $equipo->id)}}">
                         <button type="button" class="btn btn-secondary btn-sm">Ver</button>
                     </a>
@@ -66,7 +58,7 @@
                   
                 </td>
           </tr>
-
+ 
         @endforeach
       </tbody>
     </table>

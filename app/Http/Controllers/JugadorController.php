@@ -5,19 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\JugadorRequest;
 use Illuminate\Support\Facades\DB;
-use App\Equipo;
 use App\Posiciones;
 use App\Jugador;
 use App\Integrantes;
 
 class JugadorController extends Controller
 {
-    
-    public function index()
-    {
-        //
-    }
-    
     public function create(Request $request, $id)
     {
         $posiciones = Posiciones::all();
@@ -39,11 +32,6 @@ class JugadorController extends Controller
         }
 
         $jugador->id_posicion = $request->posicion;
-        /*
-        if (isset($_POST["manager"])) {
-            $jugador->manager = 1;
-         }
-         */
         $jugador->save();
         
         $integrante->id_equipo = request('id_equipo'); 
@@ -67,8 +55,6 @@ class JugadorController extends Controller
     public function edit($id)
     {
         $jugador = Jugador::findOrFail($id);
-        //$equipos = Equipo::All();
-
         return view('jugadores.edit', ['jugador'=>$jugador]);
     }
     
@@ -92,7 +78,6 @@ class JugadorController extends Controller
 
         $jugador->update();
         
-        //return redirect()->back();
         return redirect('equipos/'.$equipo->id_equipo);
          
     }

@@ -6,14 +6,14 @@
         <div class="float-right">
             <form class="form-inline my-2 my-lg-0">
                 <select name="filtrarC" class="form-control mr-sm-2">
-                    <option value="" selected disabled>filtar por categoria</option>
+                    <option value="" selected disabled>Filtar por categoría</option>
                     @foreach ($categorias as $categoria)
                     <option name="filtrarC" value="{{$categoria->categoria}}">{{$categoria->categoria}}</option>
                     @endforeach
                 </select>
 
                 <select name="filtrarR" class="form-control mr-sm-2">
-                    <option value="" selected disabled>filtar por rama</option>
+                    <option value="" selected disabled>Filtar por rama</option>
                     @foreach ($ramas as $rama)
                     <option name="filtrarR" value="{{$rama->rama}}">{{$rama->rama}}</option>
                     @endforeach
@@ -90,38 +90,5 @@
           @endforeach
         </tbody>
     </table>
-    
-    {{-------------------------------------------------------------
-    <br>
-    <h1>Tabla de Goleo</h1>
-    <table class="table" id="t2">
-        <thead>
-        <tr class="bg-success">  
-            <th scope="col">Equipo</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Goles totales</th>
-            <th scope="col">Goles penales</th>
-            <th scope="col">Goles asistencia</th>
-        </tr>
-        </thead>
-        <tbody>
-            @foreach ($jugadores as $jugador)
-                @foreach ($equiposJ as $equipoJ)
-                    @if ($equipoJ->id == $jugador->id_equipo)
-                        <tr>
-                            <td><img src="{{asset('images/'.$equipoJ->logo)}}" alt="no_img" height="50px" width="50px"> | {{$equipo->nombre}}</td>
-                            <td><img src="{{asset('images/'.$jugador->fotografia)}}" alt="no_img" height="50px" width="50px"> | {{$jugador->nombre}}</td>
-                            <td>{{$jugador->goles}}</td>
-                            <td>{{$jugador->goles_penal}}</td>
-                            <td>{{$jugador->goles_asistencia}}</td>
-                        </tr>
-                        @break
-                    @endif
-                @endforeach
-            @endforeach
-        
-        </tbody>
-    </table>
-    --}}
 </div>
 @endsection

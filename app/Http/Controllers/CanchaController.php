@@ -32,11 +32,6 @@ class CanchaController extends Controller
         return redirect('/canchas');
     }
     
-    public function show($id)
-    {
-        //
-    }
-    
     public function edit($id)
     {
         $cancha = Canchas::findOrFail($id);

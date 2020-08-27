@@ -9,7 +9,7 @@
         @csrf
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="nombre">Nombre de cancha</label>
+                <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" name="nombre" value="{{$cancha->cancha}}" placeholder="Ingrese el nombre" required>
             </div>
             

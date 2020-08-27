@@ -43,25 +43,6 @@
 
                 <input type="hidden" name="id_equipo" value="{{$id}}"> 
             </div>
-            {{---
-            @php
-                $i=0;
-                foreach ($jugadores as $jugador ) {
-                    if ($equipo->id == $jugador->id_equipo) {
-                        if ($jugador->manager == 1) {
-                            $i=$i+1;
-
-                        }
-                    }
-                }
-            @endphp
-            @if ($i==0)
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" name="manager" id="exampleCheck1">
-                    <label class="form-check-label" for="manager">Manager</label>
-                </div>
-            @endif
-            --}}
             <button type="submit" class="btn btn-primary">Reguistrar</button>
             <button type="reset" onclick="history.back()" class="btn btn-danger">Cancelar</button>
           </form>

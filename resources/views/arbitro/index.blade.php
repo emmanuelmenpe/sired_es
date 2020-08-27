@@ -39,7 +39,7 @@
                 @endif
                 
                 <td> 
-                    <form action="{{route('arbitros.destroy', $arbitro->id)}}" method="POST">
+                    <form action="{{route('arbitros.destroy', $arbitro->id)}}" method="POST" id="formulario">
                       @can('administrador')
                         <a href="{{route('arbitros.edit', $arbitro->id)}}">
                             <button type="button" class="btn btn-primary btn-sm">Editar</button>

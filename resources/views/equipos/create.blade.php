@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Crear equipo</h1>
+    <h1>Agregar equipo</h1>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -33,10 +33,10 @@
                     <option value="{{$rama->id}}">{{$rama->rama}}</option> 
                 @endforeach
                 </select>
-            </div>
+            </div>  
 
             <div class="form-group col-md-3">
-                <label for="categoria">Categoria</label>
+                <label for="categoria">Categoría</label>
                 <select name="categoria" class="form-control">
                 <option selected disabled>-</option>
                 @foreach ($categorias as $categoria)

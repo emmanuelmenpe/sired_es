@@ -12,14 +12,8 @@ class AnotacionFutbolController extends Controller
     { 
         if($request){   
             $query = trim($request->get('search'));
-            $equipos = DB::table('equipos')  
-            /*->join('ligas', 'equipos.id_liga', '=', 'ligas.id')
-            ->select('ligas.liga','equipos.*')*/
-            //->where('equipos.id_liga', '=', '1');
+            $equipos = DB::table('equipos') 
             ->get();
-            //dd($equipos);
-            /*$jugadores = Jugador::all();
-            $integrantes = Integrantes::all(); */
             $jugadores = DB::table('jugadors')
             ->where('nombre','LIKE','%' . $query . '%')
             ->join('integrantes', 'integrantes.id_jugador', 'jugadors.id')
@@ -28,34 +22,5 @@ class AnotacionFutbolController extends Controller
             $jugadores = $jugadores->get(); 
         }
         return view('datos.anotacionesFutbol',['jugadores'=>$jugadores, 'equipos'=>$equipos, 'search' => $query]);
-    }
-
-    public function create()
-    {
-        //
-    }
-    
-    public function store(Request $request)
-    {
-        //
-    }
-    
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-    
-    public function update(Request $request, $id)
-    {
-        //
-    }
-    public function destroy($id)
-    {
-        //
     }
 }

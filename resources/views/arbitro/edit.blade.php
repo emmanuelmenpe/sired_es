@@ -9,9 +9,18 @@
         @csrf
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="nombre">Nombre de árbitro</label>
+                <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" name="nombre" value="{{$arbitro->arbitro}}" placeholder="Ingrese el nombre" required>
             </div> 
+
+            <div class="form-group col-md-4">
+                <label for="foto">Fotografía</label> 
+                <input type="file" name="foto" class="form-control">
+                @if($arbitro->foto != "")
+                    <img src="{{ asset('images/'.$arbitro->foto) }}" alt="{{ $arbitro->foto }}" height="50px" width="50px">
+                    <small>fotografía actual</small>
+                @endif
+            </div>
 
             <div class="form-group col-md-4">
                 <label for="disponible">Disponible</label>
@@ -26,17 +35,9 @@
                 </select>
             </div>
 
-            <div class="form-group col-md-4">
-                <label for="foto">Fotografía del árbitro</label> 
-                <input type="file" name="foto" class="form-control">
-                @if($arbitro->foto != "")
-                    <img src="{{ asset('images/'.$arbitro->foto) }}" alt="{{ $arbitro->foto }}" height="50px" width="50px">
-                    <small>fotografía actual</small>
-                @endif
-            </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
-            <button type="reset" onclick="history.back()" class="btn btn-danger">Cancelar</button>   
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <button type="reset" onclick="history.back()" class="btn btn-danger">Cancelar</button>   
     </form>
 </div>
 @endsection

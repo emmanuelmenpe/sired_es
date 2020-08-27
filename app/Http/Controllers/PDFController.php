@@ -6,51 +6,20 @@ use Illuminate\Http\Request;
 use App\Equipo;
 use App\Arbitros;
 use App\Canchas;
-use App\Jugador;
-use App\Liga;
-use App\Categoria;
 use App\Resultado;
-use App\Rama;
-use App\Integrantes;
 use Illuminate\Support\Facades\DB;
 
 class PDFController extends Controller
 {
     public function PDFEquipos(){
         $equipos = DB::table('equipos')
-            ->orderBy('puntos', 'desc') 
-            ->join('ramas', 'ramas.id', '=', 'equipos.id_rama')
-            ->join('categorias', 'categorias.id', '=', 'equipos.id_categoria')
-            ->select('equipos.*','ramas.rama', 'categorias.categoria')
-            ->get();
-            $pdf = \PDF::loadView('pdf.equipos', ['equipos'=>$equipos]);
-            return $pdf->stream('equipos.pdf');
-        /* vertical
-        $ramas = Rama::all();
-        $categorias = Categoria::all();
-        $equipos = DB::table('equipos')
+        ->orderBy('puntos', 'desc') 
         ->join('ramas', 'ramas.id', '=', 'equipos.id_rama')
         ->join('categorias', 'categorias.id', '=', 'equipos.id_categoria')
-        ->orderBy('puntos', 'desc')
-        ->get(); 
-        
-        $pdf = \PDF::loadView('prueba',['equipos'=>$equipos,'ramas'=>$ramas, 'categorias'=>$categorias]);
-        return $pdf->download('prueva.pdf');
-        //return $pdf->stream('prueba.pdf');
-        */
-        /*
-        $ramas = Rama::all();
-        $categorias = Categoria::all();
-        $equipos = DB::table('equipos')
-        ->join('ramas', 'ramas.id', '=', 'equipos.id_rama')
-        ->join('categorias', 'categorias.id', '=', 'equipos.id_categoria')
-        ->orderBy('puntos', 'desc')
-        ->get(); 
-        
-        $pdf = \PDF::loadView('PDF.prueba',['equipos'=>$equipos,'ramas'=>$ramas, 'categorias'=>$categorias]);
-        //return $pdf->download('prueva.pdf');
-        return $pdf->setpaper('a4','landscape')->stream('prueba.pdf');
-        */
+        ->select('equipos.*','ramas.rama', 'categorias.categoria')
+        ->get();
+        $pdf = \PDF::loadView('pdf.equipos', ['equipos'=>$equipos]);
+        return $pdf->stream('equipos.pdf');
     }
 
     public function PDFPartidos(){
@@ -64,7 +33,6 @@ class PDFController extends Controller
         ->select('partidos.*','canchas.cancha', 'arbitros.arbitro')
         ->get();
         $pdf = \PDF::loadView('PDF.partidos', ['partidos'=>$partidos, 'equipos'=>$equipos, 'resultados'=>$resultados]);
-        //return $pdf->download('prueva.pdf');
         return $pdf->stream('partidos.pdf');
         
         
@@ -76,7 +44,6 @@ class PDFController extends Controller
         ->join('equipos', 'equipos.id', '=', 'partidos.id_local')
         ->select('partidos.*', 'resultados.*','equipos.nombre','equipos.logo')
         ->get();
-        //->paginate(5);
         $partidoss = DB::table('resultados')
         ->join('partidos', 'partidos.id', '=', 'resultados.id_partido')
         ->join('equipos', 'equipos.id', '=', 'partidos.id_visitante')

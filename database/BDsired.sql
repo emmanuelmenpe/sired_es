@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-08-2020 a las 00:54:43
+-- Tiempo de generación: 28-08-2020 a las 00:10:29
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.7
 
@@ -63,6 +63,18 @@ CREATE TABLE `categorias` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `categoria`, `created_at`, `updated_at`) VALUES
+(1, 'mini', NULL, NULL),
+(2, 'pasarela', NULL, NULL),
+(3, 'juvenil', NULL, NULL),
+(4, '2nd fuerza', NULL, NULL),
+(5, '1rt fuerza', NULL, NULL),
+(6, 'veteranos', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -140,7 +152,7 @@ CREATE TABLE `jugadors` (
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `curp` varchar(18) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fotografia` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `manager` tinyint(1) NOT NULL DEFAULT 0,
+  `id_posicion` bigint(20) UNSIGNED NOT NULL,
   `goles` int(11) NOT NULL DEFAULT 0,
   `goles_penal` int(11) NOT NULL DEFAULT 0,
   `goles_asistencia` int(11) NOT NULL DEFAULT 0,
@@ -159,6 +171,28 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2020_08_15_164732_create_categorias_table', 1),
+(5, '2020_08_15_164944_create_ramas_table', 1),
+(6, '2020_08_15_165015_create_equipos_table', 1),
+(7, '2020_08_15_165042_create_posiciones_table', 1),
+(8, '2020_08_15_165108_create_jugadors_table', 1),
+(9, '2020_08_15_165157_create_integrantes_table', 1),
+(10, '2020_08_15_165224_create_sancions_table', 1),
+(11, '2020_08_15_165252_create_historials_table', 1),
+(12, '2020_08_15_165325_create_arbitros_table', 1),
+(13, '2020_08_15_165353_create_canchas_table', 1),
+(14, '2020_08_15_165420_create_partidos_table', 1),
+(15, '2020_08_15_165447_create_resultados_table', 1),
+(16, '2020_08_15_165505_create_roles_table', 1);
 
 -- --------------------------------------------------------
 
@@ -193,6 +227,29 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `posiciones`
+--
+
+CREATE TABLE `posiciones` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `posicion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `posiciones`
+--
+
+INSERT INTO `posiciones` (`id`, `posicion`, `created_at`, `updated_at`) VALUES
+(1, 'Portero', NULL, NULL),
+(2, 'Defensa', NULL, NULL),
+(3, 'Medio', NULL, NULL),
+(4, 'Delantero', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `ramas`
 --
 
@@ -202,6 +259,14 @@ CREATE TABLE `ramas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `ramas`
+--
+
+INSERT INTO `ramas` (`id`, `rama`, `created_at`, `updated_at`) VALUES
+(1, 'femenil', NULL, NULL),
+(2, 'varonil', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -213,12 +278,12 @@ CREATE TABLE `resultados` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_ganador` int(11) NOT NULL DEFAULT 0,
   `id_perdedor` int(11) NOT NULL DEFAULT 0,
-  `goles_ganador` int(11) NOT NULL,
-  `goles_perdedor` int(11) NOT NULL,
+  `goles_ganador` int(11) NOT NULL DEFAULT 0,
+  `goles_perdedor` int(11) NOT NULL DEFAULT 0,
   `id_partido` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -229,10 +294,16 @@ CREATE TABLE `resultados` (
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+INSERT INTO `roles` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 'administrador', NULL, NULL),
+(2, 'publico', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -241,7 +312,6 @@ CREATE TABLE `roles` (
 --
 
 CREATE TABLE `role_user` (
-  `id` bigint(20) NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `role_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -321,8 +391,8 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `historials`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `historiales_id_jugador_foreign` (`id_jugador`),
-  ADD KEY `historiales_id_sancion_foreign` (`id_sancion`);
+  ADD KEY `historials_id_jugador_foreign` (`id_jugador`),
+  ADD KEY `historials_id_sancion_foreign` (`id_sancion`);
 
 --
 -- Indices de la tabla `integrantes`
@@ -336,7 +406,8 @@ ALTER TABLE `integrantes`
 -- Indices de la tabla `jugadors`
 --
 ALTER TABLE `jugadors`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jugadors_id_posicion_foreign` (`id_posicion`);
 
 --
 -- Indices de la tabla `migrations`
@@ -361,6 +432,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indices de la tabla `posiciones`
+--
+ALTER TABLE `posiciones`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `ramas`
 --
 ALTER TABLE `ramas`
@@ -371,7 +448,7 @@ ALTER TABLE `ramas`
 --
 ALTER TABLE `resultados`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_partido` (`id_partido`);
+  ADD KEY `resultados_id_partido_foreign` (`id_partido`);
 
 --
 -- Indices de la tabla `roles`
@@ -383,7 +460,6 @@ ALTER TABLE `roles`
 -- Indices de la tabla `role_user`
 --
 ALTER TABLE `role_user`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `role_user_user_id_foreign` (`user_id`),
   ADD KEY `role_user_role_id_foreign` (`role_id`);
 
@@ -408,7 +484,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `arbitros`
 --
 ALTER TABLE `arbitros`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `canchas`
@@ -420,7 +496,7 @@ ALTER TABLE `canchas`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
@@ -456,7 +532,7 @@ ALTER TABLE `jugadors`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `partidos`
@@ -465,10 +541,16 @@ ALTER TABLE `partidos`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `posiciones`
+--
+ALTER TABLE `posiciones`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `ramas`
 --
 ALTER TABLE `ramas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `resultados`
@@ -480,13 +562,7 @@ ALTER TABLE `resultados`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `role_user`
---
-ALTER TABLE `role_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `sancions`
@@ -498,7 +574,7 @@ ALTER TABLE `sancions`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,;
 
 --
 -- Restricciones para tablas volcadas
@@ -515,8 +591,8 @@ ALTER TABLE `equipos`
 -- Filtros para la tabla `historials`
 --
 ALTER TABLE `historials`
-  ADD CONSTRAINT `historiales_id_jugador_foreign` FOREIGN KEY (`id_jugador`) REFERENCES `jugadors` (`id`),
-  ADD CONSTRAINT `historiales_id_sancion_foreign` FOREIGN KEY (`id_sancion`) REFERENCES `sancions` (`id`);
+  ADD CONSTRAINT `historials_id_jugador_foreign` FOREIGN KEY (`id_jugador`) REFERENCES `jugadors` (`id`),
+  ADD CONSTRAINT `historials_id_sancion_foreign` FOREIGN KEY (`id_sancion`) REFERENCES `sancions` (`id`);
 
 --
 -- Filtros para la tabla `integrantes`
@@ -524,6 +600,12 @@ ALTER TABLE `historials`
 ALTER TABLE `integrantes`
   ADD CONSTRAINT `integrantes_id_equipo_foreign` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`),
   ADD CONSTRAINT `integrantes_id_jugador_foreign` FOREIGN KEY (`id_jugador`) REFERENCES `jugadors` (`id`);
+
+--
+-- Filtros para la tabla `jugadors`
+--
+ALTER TABLE `jugadors`
+  ADD CONSTRAINT `jugadors_id_posicion_foreign` FOREIGN KEY (`id_posicion`) REFERENCES `posiciones` (`id`);
 
 --
 -- Filtros para la tabla `partidos`
@@ -538,7 +620,7 @@ ALTER TABLE `partidos`
 -- Filtros para la tabla `resultados`
 --
 ALTER TABLE `resultados`
-  ADD CONSTRAINT `resultados_ibfk_1` FOREIGN KEY (`id_partido`) REFERENCES `partidos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `resultados_id_partido_foreign` FOREIGN KEY (`id_partido`) REFERENCES `partidos` (`id`);
 
 --
 -- Filtros para la tabla `role_user`

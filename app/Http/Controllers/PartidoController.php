@@ -26,26 +26,13 @@ class PartidoController extends Controller
     {
         $equipos = Equipo::all();
         $resultados = Resultado::all();
-        //return view('partidos.index', ['partidos'=>Partido::all(), 'equipos'=>Equipo::all()]);
         $partidos = DB::table('partidos')
-        //->where('nombre','LIKE','%' . $query . '%')
         ->orderBy('id', 'desc')
         ->join('canchas', 'canchas.id', '=', 'partidos.id_cancha')
         ->join('arbitros', 'arbitros.id', '=', 'partidos.id_arbitro')
-        //->join('equipos', 'equipos.id', '=', 'partidos.id_visitante')
         ->select('partidos.*','canchas.cancha', 'arbitros.arbitro', 'canchas.direccion')
         ->get();
-
         
-        //->paginate(5);
-        /*echo "<pre>";
-        print_r($partidos);*/
-        /*$partidoss = DB::table('partidos')
-        ->join('equipos', 'equipos.id', '=', 'partidos.id_visitante')
-        ->select('partidos.*', 'equipos.nombre')
-        ->get(); 
-        /*echo "<pre>";
-        print_r($partidoss);*/
         return view('partidos.index', ['partidos'=>$partidos, 'equipos'=>$equipos, 'resultados'=>$resultados]);
         
     }
@@ -74,16 +61,10 @@ class PartidoController extends Controller
         $partido->save();
         return redirect('/partidos');
     }
-    
-    public function show($id)
-    {
-        //
-    } 
-    
+
     public function edit($id)
     {
-        $partido = Partido::findOrFail($id);//->first();
-        //dd($partido);
+        $partido = Partido::findOrFail($id);
         $canchas = Canchas::all();
         $arbitros = Arbitros::alL();
         return view('partidos.edit',['partido' => $partido, 'canchas'=>$canchas, 'arbitros'=>$arbitros]);
@@ -91,16 +72,7 @@ class PartidoController extends Controller
     
     public function update(Request $request, $id)
     {
-        $partido = Partido::findOrFail($id);//->first();
-       //dd($partido);
-        /*
-        $canchaB = $request->get('canchaB');
-        $arbitroB = $request->get('arbitroB');
-
-        $cancha = Canchas::findOrFail($cnahcB);
-        $arbitro = Arbitros::findOrFail($arbitroB);
-        
-        $cancha->cancha*/
+        $partido = Partido::findOrFail($id);
         $partido->id_cancha = $request->get('cancha');
         $partido->id_arbitro = $request->get('arbitro');
         $partido->fecha = $request->get('fecha');
@@ -114,7 +86,9 @@ class PartidoController extends Controller
     public function destroy($id)
     {
         $partido = Partido::findOrFail($id);
-        
+        $resultado = DB::table('resultados')->where('id_partido','LIKE','%' . $id . '%');
+
+        $resultado->delete();
         $partido->delete();
         
         return redirect('/partidos');

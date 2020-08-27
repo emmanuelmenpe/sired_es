@@ -15,10 +15,10 @@ class CreateResultadosTable extends Migration
     {
         Schema::create('resultados', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('id_ganador');
-            $table->integer('id_perdedor');
-            $table->integer('goles_ganador');
-            $table->integer('goles_perdedor');
+            $table->integer('id_ganador')->default('0');
+            $table->integer('id_perdedor')->default('0');
+            $table->integer('goles_ganador')->default('0');
+            $table->integer('goles_perdedor')->default('0');
             $table->foreignId('id_partido')->references('id')->on('partidos');
             $table->timestamps();
         });

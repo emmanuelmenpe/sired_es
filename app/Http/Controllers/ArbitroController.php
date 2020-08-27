@@ -36,11 +36,6 @@ class ArbitroController extends Controller
         return redirect('/arbitros');
     }
     
-    public function show($id)
-    {
-        //
-    }
-    
     public function edit($id)
     {
         $arbitro = Arbitros::findOrFail($id);

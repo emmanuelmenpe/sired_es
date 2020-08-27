@@ -65,7 +65,7 @@
                         </a>
                         @can('administrador')
                           <a href="{{route('jugadores.edit', $jugador->id)}}">
-                          <button type="button" class="btn btn-primary btn-sm">Editar{{$jugador->id}}</button>
+                          <button type="button" class="btn btn-primary btn-sm">Editar</button>
                           </a>
                           @csrf
                           @method('DELETE')
@@ -182,7 +182,7 @@
                           Asistencia a gol:{{$jugador->goles_asistencia}} <br>
                         </p>
                         
-                          <form action="{{route('jugadores.destroy', $jugador->id)}}" method="POST">
+                          <form action="{{route('jugadores.destroy', $jugador->id)}}" method="POST" id="formulario">
                               <a href="{{route('jugadores.show', $jugador->id)}}">
                                 <button type="button" class="btn btn-secondary btn-sm">Ver</button>
                               </a>

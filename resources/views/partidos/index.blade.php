@@ -55,19 +55,6 @@
                 @endif
               @endforeach
               
-              {{--
-              @php
-                  $i=1;
-                  foreach ($partidoss as $partidoo) {
-                    if ($loop->iteration == $i) {
-                      echo "<td>".$partidoo->nombre."</td>";
-                      /*echo "iteration: ".$loop->iteration;
-                      echo "id: ".$partidoo->id;*/
-                    }
-                    $i=$i+1;
-                  }
-              @endphp
-              --}}
               <td>{{$partido->cancha}}</td>
               <td>{{$partido->direccion}}</td>
               <td>{{$partido->fecha}}</td>
@@ -75,7 +62,7 @@
               <td>{{$partido->arbitro}}</td>
               @can('administrador')
                 <td> 
-                  <form action="{{route('partidos.destroy', $partido->id)}}" method="POST">
+                  <form action="{{route('partidos.destroy', $partido->id)}}" method="POST" id="formulario">
                       @php 
                         $i=0;
                         foreach ($resultados as $resultado ) {

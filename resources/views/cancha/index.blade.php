@@ -36,7 +36,7 @@
                 @endif
                 @can('administrador')
                     <td> 
-                        <form action="{{route('canchas.destroy', $cancha->id)}}" method="POST">
+                        <form action="{{route('canchas.destroy', $cancha->id)}}" method="POST" id="formulario">
                             <a href="{{route('canchas.edit', $cancha->id)}}">
                                 <button type="button" class="btn btn-primary btn-sm">Editar</button>
                             </a>
