@@ -7,7 +7,7 @@ Aplicación web creada con **Laravel 7** que permite el CRUD de equipos deportiv
 
 Para obtener una copia funcional en maquina local es necesario cumplir con los siguientes requerimientos:
 
-- Sistema Gestor de Bases de Datos SQL (SGBD) inatalado con versión de PHP mínimo a 7.2.5.
+- Sistema Gestor de Bases de Datos SQL (SGBD) instalado con versión de PHP mínimo a 7.2.5.
 - Composer instalado.
 - Laravel instalado.
 
